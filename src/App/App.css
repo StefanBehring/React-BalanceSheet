@@ -6,6 +6,7 @@
 }
 
 .app__title {
+	color: var(--color-secondary);
 	text-align: center;
 }
 
