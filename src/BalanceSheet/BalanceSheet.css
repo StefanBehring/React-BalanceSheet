@@ -1,0 +1,9 @@
+.main {
+	background-color: var(--color-light);
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	padding: 0.5rem;
+	margin: 1rem auto;
+	min-width: 320px;
+}
