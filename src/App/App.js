@@ -1,72 +1,24 @@
 import './App.css';
 import BalanceSheet from '../BalanceSheet/BalanceSheet';
+import LocalStorageInit from './LocalStorageInit';
+import { useState } from 'react';
 
 function App() {
 	// LocalStorage init
-	if (localStorage.getItem('balance') === null) {
-		const newBalance = {
-			sides: ['activa', 'passiva'],
-			types: ['long-term', 'mid-term', 'short-term'],
-			items: [
-				{
-					id: 0,
-					side: 'activa',
-					type: 'long-term',
-					title: 'appartment',
-					description: 'my appartment',
-					value: '23.123,89',
-				},
-				{
-					id: 1,
-					side: 'activa',
-					type: 'mid-term',
-					title: 'loan',
-					description: 'my appartment',
-					value: '23.123,89',
-				},
-				{
-					id: 2,
-					side: 'activa',
-					type: 'short-term',
-					title: 'bill',
-					description: 'my appartment',
-					value: '23.123,89',
-				},
-				{
-					id: 3,
-					side: 'passiva',
-					type: 'long-term',
-					title: 'appartment',
-					description: 'my appartment',
-					value: '23.123,89',
-				},
-				{
-					id: 4,
-					side: 'passiva',
-					type: 'mid-term',
-					title: 'loan',
-					description: 'my appartment',
-					value: '23.123,89',
-				},
-				{
-					id: 5,
-					side: 'passiva',
-					type: 'short-term',
-					title: 'bill',
-					description: 'my appartment',
-					value: '23.123,89',
-				},
-			],
-		};
-		localStorage.setItem('balance', JSON.stringify(newBalance));
-	}
+	LocalStorageInit();
+
+	const [page, setPage] = useState('main');
+
+	const changePageHandler = (job, side, type, id) => {
+		setPage(job);
+	};
 
 	return (
 		<div className='app'>
 			<header className='app__header'>
 				<h1 className='app__title'>Balance Sheet</h1>
 			</header>
-			<BalanceSheet />
+			{page === 'main' ? <BalanceSheet onChangePage={changePageHandler} /> : ''}
 			<footer className='app__footer'>
 				<a
 					href='https://github.com/StefanBehring/React-Privatbilanz'
