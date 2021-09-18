@@ -5,7 +5,7 @@ function App() {
 	return (
 		<div className='app'>
 			<header className='app__header'>
-				<h1 className='app__title'>Privatbilanz</h1>
+				<h1 className='app__title'>Balance Sheet</h1>
 			</header>
 			<BalanceSheet />
 			<footer className='app__footer'>

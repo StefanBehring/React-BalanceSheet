@@ -1,0 +1,10 @@
+.balance-side {
+	background-color: var(--color-secondary);
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	padding: 0.5rem;
+	margin: 1rem auto;
+	width: max-content;
+	min-width: 300px;
+}
