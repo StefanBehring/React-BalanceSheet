@@ -8,9 +8,21 @@ const BalancePosition = (title, items) => {
 				<h3 className='balance-position__title'>Title</h3>
 				<button className='balance-position__add-item'>Add</button>
 			</div>
-			<BalanceItem />
-			<BalanceItem />
-			<BalanceItem />
+			<BalanceItem
+				title={'Item'}
+				description={'Description'}
+				value={'21.324,99 €'}
+			/>
+			<BalanceItem
+				title={'Item'}
+				description={'Description'}
+				value={'21.324,99 €'}
+			/>
+			<BalanceItem
+				title={'Item'}
+				description={'Description'}
+				value={'21.324,99 €'}
+			/>
 		</div>
 	);
 };
