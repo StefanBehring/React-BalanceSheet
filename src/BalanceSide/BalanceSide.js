@@ -4,7 +4,7 @@ import './BalanceSide.css';
 const BalanceSide = () => {
 	return (
 		<section className='balance-side'>
-			<h2>Title</h2>
+			<h2 className='balance-side__title'>Title</h2>
 			<BalancePosition />
 			<BalancePosition />
 			<BalancePosition />

@@ -1,12 +1,13 @@
 .balance-position {
 	background-color: var(--color-primary);
+	border: 1px solid var(--color-button-border);
 	border-radius: 20px;
 	display: flex;
 	flex-direction: column;
 	padding: 0.5rem;
 	margin: 1rem auto;
 	width: max-content;
-	min-width: 280px;
+	width: 280px;
 }
 
 .balance-position__header {
@@ -33,4 +34,10 @@
 
 .balance-position__add-item:hover {
 	background-color: var(--color-button-green-hover);
+}
+
+@media screen and (min-width: 760px) {
+	.balance-position {
+		width: 300px;
+	}
 }
