@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import './BalanceItem.css';
 
-const BalanceItem = ({ title, description, value }) => {
+const BalanceItem = ({ itemId }) => {
+	// Get item by id from localStorage
+	const item = JSON.parse(localStorage.getItem('balance')).items.find(
+		(itemFind) => itemFind.id === itemId
+	);
+
 	const [showMenu, setShowMenu] = useState(false);
 
 	const showMenuButtonClickHandler = () => {
@@ -11,7 +16,7 @@ const BalanceItem = ({ title, description, value }) => {
 	return (
 		<div className='balance-item'>
 			<div className='balance-item__header'>
-				<h4 className='balance-item__title'>{title}</h4>
+				<h4 className='balance-item__title'>{item.title}</h4>
 				<button
 					className='balance-item__show-menu'
 					onClick={showMenuButtonClickHandler}
@@ -19,8 +24,8 @@ const BalanceItem = ({ title, description, value }) => {
 					{showMenu ? '-' : '+'}
 				</button>
 			</div>
-			<p className='balance-item__desc'>{description}</p>
-			<p className='balance-item__value'>{value}</p>
+			<p className='balance-item__desc'>{item.description}</p>
+			<p className='balance-item__value'>{item.value} €</p>
 			<div
 				className={
 					showMenu
