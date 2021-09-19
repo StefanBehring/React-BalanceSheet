@@ -1,14 +1,20 @@
 import BalanceSide from '../BalanceSide/BalanceSide';
 import './BalanceSheet.css';
 
-const BalanceSheet = ({ onChangePage }) => {
+const BalanceSheet = ({ balanceLocalStorage, onChangePage, onDeleteItem }) => {
 	// Get sides from localStorage
-	const sides = JSON.parse(localStorage.getItem('balance')).sides;
+	const sides = balanceLocalStorage.sides;
 
 	return (
 		<main className='main'>
 			{sides.map((side) => (
-				<BalanceSide key={side} side={side} onChangePage={onChangePage} />
+				<BalanceSide
+					key={side}
+					side={side}
+					balanceLocalStorage={balanceLocalStorage}
+					onChangePage={onChangePage}
+					onDeleteItem={onDeleteItem}
+				/>
 			))}
 		</main>
 	);

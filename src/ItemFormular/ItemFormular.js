@@ -66,8 +66,6 @@ const ItemFormular = ({ job, side, type, id }) => {
 		};
 		const balance = JSON.parse(localStorage.getItem('balance'));
 		balance.items.push(addObj);
-		console.table(addObj);
-		alert('WAIT');
 		localStorage.setItem('balance', JSON.stringify(balance));
 	};
 

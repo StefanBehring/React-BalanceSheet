@@ -1,9 +1,15 @@
 import BalanceItem from '../BalanceItem/BalanceItem';
 import './BalancePosition.css';
 
-const BalancePosition = ({ onChangePage, side, type }) => {
+const BalancePosition = ({
+	balanceLocalStorage,
+	onChangePage,
+	onDeleteItem,
+	side,
+	type,
+}) => {
 	// Get items from localStorage
-	let items = JSON.parse(localStorage.getItem('balance')).items;
+	let items = balanceLocalStorage.items;
 	items = items.filter((item) => item.side === side && item.type === type);
 
 	const onAddItemClickHandler = () => {
@@ -27,6 +33,7 @@ const BalancePosition = ({ onChangePage, side, type }) => {
 						key={item.id}
 						itemId={item.id}
 						onChangePage={onChangePage}
+						onDeleteItem={onDeleteItem}
 					/>
 				);
 			})}

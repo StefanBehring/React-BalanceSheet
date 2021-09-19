@@ -12,6 +12,9 @@ function App() {
 	const [side, setSide] = useState('');
 	const [type, setType] = useState('');
 	const [itemId, setItemId] = useState('');
+	const [balanceLocalStorage, setBalanceLocalStorage] = useState(
+		JSON.parse(localStorage.getItem('balance'))
+	);
 
 	const changePageHandler = (job, doSide, doType, doId) => {
 		setPage(job);
@@ -20,12 +23,30 @@ function App() {
 		setItemId(doId);
 	};
 
+	const deleteItemHandler = (deleteItemId) => {
+		const balance = balanceLocalStorage;
+		const newItems = balance.items.filter(
+			(element) => element.id !== deleteItemId
+		);
+		balance.items = newItems;
+		localStorage.setItem('balance', JSON.stringify(balance));
+		setBalanceLocalStorage(balance);
+	};
+
 	return (
 		<div className='app'>
 			<header className='app__header'>
 				<h1 className='app__title'>Balance Sheet</h1>
 			</header>
-			{page === 'main' ? <BalanceSheet onChangePage={changePageHandler} /> : ''}
+			{page === 'main' ? (
+				<BalanceSheet
+					balanceLocalStorage={balanceLocalStorage}
+					onChangePage={changePageHandler}
+					onDeleteItem={deleteItemHandler}
+				/>
+			) : (
+				''
+			)}
 			{page === 'add' ? (
 				<ItemFormular job={page} side={side} type={type} />
 			) : (

@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import './BalanceItem.css';
 
-const BalanceItem = ({ onChangePage, itemId }) => {
+const BalanceItem = ({ onChangePage, onDeleteItem, itemId }) => {
 	// Get item by id from localStorage
 	const item = JSON.parse(localStorage.getItem('balance')).items.find(
 		(itemFind) => itemFind.id === itemId
 	);
 
 	const [showMenu, setShowMenu] = useState(false);
+	const [id, setId] = useState(itemId);
 
 	const showMenuButtonClickHandler = () => {
 		setShowMenu(!showMenu);
@@ -15,6 +16,10 @@ const BalanceItem = ({ onChangePage, itemId }) => {
 
 	const editItemClickHandler = () => {
 		onChangePage('edit', item.side, item.type, item.id);
+	};
+
+	const deleteItemClickHandler = () => {
+		onDeleteItem(id);
 	};
 
 	return (
@@ -40,7 +45,12 @@ const BalanceItem = ({ onChangePage, itemId }) => {
 				<button className='balance-item__edit' onClick={editItemClickHandler}>
 					Edit
 				</button>
-				<button className='balance-item__delete'>Delete</button>
+				<button
+					className='balance-item__delete'
+					onClick={deleteItemClickHandler}
+				>
+					Delete
+				</button>
 			</div>
 		</div>
 	);
