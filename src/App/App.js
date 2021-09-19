@@ -1,72 +1,58 @@
 import './App.css';
 import BalanceSheet from '../BalanceSheet/BalanceSheet';
+import LocalStorageInit from './LocalStorageInit';
+import { useState } from 'react';
+import ItemFormular from '../ItemFormular/ItemFormular';
 
 function App() {
 	// LocalStorage init
-	if (localStorage.getItem('balance') === null) {
-		const newBalance = {
-			sides: ['activa', 'passiva'],
-			types: ['long-term', 'mid-term', 'short-term'],
-			items: [
-				{
-					id: 0,
-					side: 'activa',
-					type: 'long-term',
-					title: 'appartment',
-					description: 'my appartment',
-					value: '23.123,89',
-				},
-				{
-					id: 1,
-					side: 'activa',
-					type: 'mid-term',
-					title: 'loan',
-					description: 'my appartment',
-					value: '23.123,89',
-				},
-				{
-					id: 2,
-					side: 'activa',
-					type: 'short-term',
-					title: 'bill',
-					description: 'my appartment',
-					value: '23.123,89',
-				},
-				{
-					id: 3,
-					side: 'passiva',
-					type: 'long-term',
-					title: 'appartment',
-					description: 'my appartment',
-					value: '23.123,89',
-				},
-				{
-					id: 4,
-					side: 'passiva',
-					type: 'mid-term',
-					title: 'loan',
-					description: 'my appartment',
-					value: '23.123,89',
-				},
-				{
-					id: 5,
-					side: 'passiva',
-					type: 'short-term',
-					title: 'bill',
-					description: 'my appartment',
-					value: '23.123,89',
-				},
-			],
-		};
-		localStorage.setItem('balance', JSON.stringify(newBalance));
-	}
+	LocalStorageInit();
+
+	const [page, setPage] = useState('main');
+	const [side, setSide] = useState('');
+	const [type, setType] = useState('');
+	const [itemId, setItemId] = useState('');
+	const [balanceLocalStorage, setBalanceLocalStorage] = useState(
+		JSON.parse(localStorage.getItem('balance'))
+	);
+
+	const changePageHandler = (job, doSide, doType, doId) => {
+		setPage(job);
+		setSide(doSide);
+		setType(doType);
+		setItemId(doId);
+	};
+
+	const deleteItemHandler = (deleteItemId) => {
+		const balance = balanceLocalStorage;
+		const newItems = balance.items.filter(
+			(element) => element.id !== deleteItemId
+		);
+		balance.items = newItems;
+		localStorage.setItem('balance', JSON.stringify(balance));
+		setBalanceLocalStorage(balance);
+	};
 
 	return (
 		<div className='app'>
 			<header className='app__header'>
 				<h1 className='app__title'>Balance Sheet</h1>
 			</header>
-			<BalanceSheet />
+			{page === 'main' ? (
+				<BalanceSheet
+					balanceLocalStorage={balanceLocalStorage}
+					onChangePage={changePageHandler}
+					onDeleteItem={deleteItemHandler}
+				/>
+			) : (
+				''
+			)}
+			{page === 'add' ? (
+				<ItemFormular job={page} side={side} type={type} />
+			) : (
+				''
+			)}
+			{page === 'edit' ? <ItemFormular job={page} id={itemId} /> : ''}
 			<footer className='app__footer'>
 				<a
 					href='https://github.com/StefanBehring/React-Privatbilanz'
