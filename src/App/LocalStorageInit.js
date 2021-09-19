@@ -10,7 +10,7 @@ const LocalStorageInit = () => {
 					type: 'long-term',
 					title: 'appartment',
 					description: 'my appartment',
-					value: '23.123,89',
+					amount: '23123.89',
 				},
 				{
 					id: 1,
@@ -18,7 +18,7 @@ const LocalStorageInit = () => {
 					type: 'mid-term',
 					title: 'loan',
 					description: 'my appartment',
-					value: '23.123,89',
+					amount: '23123.89',
 				},
 				{
 					id: 2,
@@ -26,7 +26,7 @@ const LocalStorageInit = () => {
 					type: 'short-term',
 					title: 'bill',
 					description: 'my appartment',
-					value: '23.123,89',
+					amount: '23123.89',
 				},
 				{
 					id: 3,
@@ -34,7 +34,7 @@ const LocalStorageInit = () => {
 					type: 'long-term',
 					title: 'appartment',
 					description: 'my appartment',
-					value: '23.123,89',
+					amount: '23123.89',
 				},
 				{
 					id: 4,
@@ -42,7 +42,7 @@ const LocalStorageInit = () => {
 					type: 'mid-term',
 					title: 'loan',
 					description: 'my appartment',
-					value: '23.123,89',
+					amount: '23123.89',
 				},
 				{
 					id: 5,
@@ -50,7 +50,7 @@ const LocalStorageInit = () => {
 					type: 'short-term',
 					title: 'bill',
 					description: 'my appartment',
-					value: '23.123,89',
+					amount: '23123.89',
 				},
 			],
 		};

@@ -29,7 +29,7 @@ const BalanceItem = ({ onChangePage, itemId }) => {
 				</button>
 			</div>
 			<p className='balance-item__desc'>{item.description}</p>
-			<p className='balance-item__value'>{item.value} €</p>
+			<p className='balance-item__value'>{item.amount} €</p>
 			<div
 				className={
 					showMenu

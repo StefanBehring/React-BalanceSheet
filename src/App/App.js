@@ -31,7 +31,7 @@ function App() {
 			) : (
 				''
 			)}
-			{page === 'edit' ? <ItemFormular job={page} itemId={itemId} /> : ''}
+			{page === 'edit' ? <ItemFormular job={page} id={itemId} /> : ''}
 			<footer className='app__footer'>
 				<a
 					href='https://github.com/StefanBehring/React-Privatbilanz'
