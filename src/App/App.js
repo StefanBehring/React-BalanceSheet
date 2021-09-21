@@ -26,25 +26,6 @@ function App() {
     setBalanceLocalStorage(balance)
   }
 
-  const AppDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    width: 350px;
-    @media screen and (min-width: 760px) {
-      width: 750px;
-    }
-  `
-
-  const AppTitle = styled.h1`
-    color: var(--color-secondary);
-    text-align: center;
-  `
-
-  const AppFooter = styled.footer`
-    text-align: center;
-  `
-
   return (
     <AppDiv>
       <header className="app__header">
@@ -74,4 +55,24 @@ function App() {
     </AppDiv>
   )
 }
+
+const AppDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 350px;
+  @media screen and (min-width: 760px) {
+    width: 750px;
+  }
+`
+
+const AppTitle = styled.h1`
+  color: var(--color-secondary);
+  text-align: center;
+`
+
+const AppFooter = styled.footer`
+  text-align: center;
+`
+
 export default App
