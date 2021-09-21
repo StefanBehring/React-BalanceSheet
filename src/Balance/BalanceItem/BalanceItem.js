@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+import BalanceItemHeader from './BalanceItemHeader'
+import BalanceItemMenu from './BalanceItemMenu'
 
 const BalanceItem = ({ onChangePage, onDeleteItem, itemId }) => {
   // Get item by id from localStorage
@@ -23,21 +25,18 @@ const BalanceItem = ({ onChangePage, onDeleteItem, itemId }) => {
 
   return (
     <BalanceItemDiv>
-      <BalanceItemHeader>
-        <h4 className="balance-item__title">{item.title}</h4>
-        <BalanceItemShowMenu onClick={showMenuButtonClickHandler}>
-          {showMenu ? '-' : '+'}
-        </BalanceItemShowMenu>
-      </BalanceItemHeader>
+      <BalanceItemHeader
+        itemTitle={item.title}
+        showMenu={showMenu}
+        onMenuButtonClick={showMenuButtonClickHandler}
+      />
       <BalanceItemDesc>{item.description}</BalanceItemDesc>
       <BalanceItemValue>{item.amount} €</BalanceItemValue>
       {showMenu && (
-        <BalanceItemMenu>
-          <BalanceItemEdit onClick={editItemClickHandler}>Edit</BalanceItemEdit>
-          <BalanceItemDelete onClick={deleteItemClickHandler}>
-            Delete
-          </BalanceItemDelete>
-        </BalanceItemMenu>
+        <BalanceItemMenu
+          onEditItemClick={editItemClickHandler}
+          onDeleteItemClick={deleteItemClickHandler}
+        />
       )}
     </BalanceItemDiv>
   )
@@ -58,65 +57,12 @@ const BalanceItemDiv = styled.div`
   }
 `
 
-const BalanceItemHeader = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-`
-
-const BalanceItemShowMenu = styled.button`
-  background-color: var(--color-button-blue);
-  border: 1px solid var(--color-button-border);
-  color: var(--color-light);
-  font-family: var(--font-family);
-  padding: 0.3rem 0.5rem;
-  width: fit-content;
-  transition: all 0.3s ease-in;
-
-  &:hover {
-    background-color: var(--color-button-blue-hover);
-  }
-`
-
 const BalanceItemDesc = styled.p`
   text-align: left;
 `
 
 const BalanceItemValue = styled.p`
   text-align: right;
-`
-
-const BalanceItemMenu = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-`
-
-const BalanceItemEdit = styled.button`
-  background-color: var(--color-button-grey);
-  border: 1px solid var(--color-button-border);
-  border-radius: 20px;
-  color: var(--color-light);
-  font-family: var(--font-family);
-  padding: 0.6rem 0.8rem;
-  transition: all 0.3s ease-in;
-
-  &:hover {
-    background-color: var(--color-button-grey-hover);
-  }
-`
-
-const BalanceItemDelete = styled.button`
-  background-color: var(--color-button-red);
-  border: 1px solid var(--color-button-border);
-  border-radius: 20px;
-  color: var(--color-light);
-  font-family: var(--font-family);
-  padding: 0.6rem 0.8rem;
-  transition: all 0.3s ease-in;
-
-  &:hover {
-    background-color: var(--color-button-red-hover);
-  }
 `
 
 export default BalanceItem
