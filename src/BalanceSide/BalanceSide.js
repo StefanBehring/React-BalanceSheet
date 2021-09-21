@@ -1,5 +1,5 @@
+import styled from 'styled-components'
 import BalancePosition from '../BalancePosition/BalancePosition'
-import './BalanceSide.css'
 
 const BalanceSide = ({
   balanceLocalStorage,
@@ -10,9 +10,30 @@ const BalanceSide = ({
   // Get types from localStorage
   const types = balanceLocalStorage.types
 
+  const BalanceSideSection = styled.section`
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-button-border);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    margin: 0.5rem auto;
+    width: max-content;
+    min-width: 300px;
+
+    @media screen and (min-width: 760px) {
+      width: 320px;
+    }
+  `
+
+  const BalanceSideTitle = styled.h2`
+    margin: 0.5rem 0.3rem 0.3rem;
+    padding: 0;
+  `
+
   return (
-    <section className="balance-side">
-      <h2 className="balance-side__title">{side}</h2>
+    <BalanceSideSection>
+      <BalanceSideTitle>{side}</BalanceSideTitle>
       {types.map(type => (
         <BalancePosition
           key={`${side}-${type}`}
@@ -23,7 +44,7 @@ const BalanceSide = ({
           onDeleteItem={onDeleteItem}
         />
       ))}
-    </section>
+    </BalanceSideSection>
   )
 }
 
