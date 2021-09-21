@@ -8,18 +8,17 @@ const BalanceItem = ({ onChangePage, onDeleteItem, itemId }) => {
   )
 
   const [showMenu, setShowMenu] = useState(false)
-  const [id, setId] = useState(itemId)
 
   const showMenuButtonClickHandler = () => {
     setShowMenu(!showMenu)
   }
 
   const editItemClickHandler = () => {
-    onChangePage('edit', item.side, item.type, item.id)
+    onChangePage('edit', item.side, item.type, itemId)
   }
 
   const deleteItemClickHandler = () => {
-    onDeleteItem(id)
+    onDeleteItem(itemId)
   }
 
   const BalanceItemDiv = styled.div`
