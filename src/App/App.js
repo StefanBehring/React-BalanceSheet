@@ -1,4 +1,4 @@
-import './App.css'
+import styled from 'styled-components'
 import BalanceSheet from '../BalanceSheet/BalanceSheet'
 import LocalStorageInit from './LocalStorageInit'
 import { useState } from 'react'
@@ -35,10 +35,29 @@ function App() {
     setBalanceLocalStorage(balance)
   }
 
+  const AppDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 350px;
+    @media screen and (min-width: 760px) {
+      width: 750px;
+    }
+  `
+
+  const AppTitle = styled.h1`
+    color: var(--color-secondary);
+    text-align: center;
+  `
+
+  const AppFooter = styled.footer`
+    text-align: center;
+  `
+
   return (
-    <div className="app">
+    <AppDiv>
       <header className="app__header">
-        <h1 className="app__title">Balance Sheet</h1>
+        <AppTitle>Balance Sheet</AppTitle>
       </header>
       {page === 'main' ? (
         <BalanceSheet
@@ -55,7 +74,7 @@ function App() {
         ''
       )}
       {page === 'edit' ? <ItemFormular job={page} id={itemId} /> : ''}
-      <footer className="app__footer">
+      <AppFooter className="app__footer">
         <a
           href="https://github.com/StefanBehring/React-Privatbilanz"
           target="_blank"
@@ -64,9 +83,8 @@ function App() {
           A github project
         </a>
         <p>by: Stefan Behring</p>
-      </footer>
-    </div>
+      </AppFooter>
+    </AppDiv>
   )
 }
-
 export default App
