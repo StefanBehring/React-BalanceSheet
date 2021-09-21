@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import BalanceItem from '../BalanceItem/BalanceItem'
 import BalancePositionHeader from './BalancePositionHeader'
 
-const BalancePosition = ({ onChangePage, onDeleteItem, side, type }) => {
+const BalancePosition = ({ onDeleteItem, side, type }) => {
   // Get items from localStorage
   const items = JSON.parse(localStorage.getItem('balance')).items.filter(
     item => item.side === side && item.type === type
@@ -27,7 +27,6 @@ const BalancePosition = ({ onChangePage, onDeleteItem, side, type }) => {
           <BalanceItem
             key={item.id}
             itemId={item.id}
-            onChangePage={onChangePage}
             onDeleteItem={onDeleteItem}
           />
         )

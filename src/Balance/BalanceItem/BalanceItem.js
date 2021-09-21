@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import BalanceItemHeader from './BalanceItemHeader'
 import BalanceItemMenu from './BalanceItemMenu'
 
-const BalanceItem = ({ onChangePage, onDeleteItem, itemId }) => {
+const BalanceItem = ({ onDeleteItem, itemId }) => {
   // Get item by id from localStorage
   const item = JSON.parse(localStorage.getItem('balance')).items.find(
     itemFind => itemFind.id === itemId
