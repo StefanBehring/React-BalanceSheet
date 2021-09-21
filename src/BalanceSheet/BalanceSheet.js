@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import BalanceSide from '../BalanceSide/BalanceSide'
 
-const BalanceSheet = ({ balanceLocalStorage, onChangePage, onDeleteItem }) => {
+const BalanceSheet = ({ onChangePage, onDeleteItem }) => {
   // Get sides from localStorage
-  const sides = balanceLocalStorage.sides
+  const sides = JSON.parse(localStorage.getItem('balance')).sides
 
   const Main = styled.main`
     background-color: var(--color-light);
@@ -27,7 +27,6 @@ const BalanceSheet = ({ balanceLocalStorage, onChangePage, onDeleteItem }) => {
         <BalanceSide
           key={side}
           side={side}
-          balanceLocalStorage={balanceLocalStorage}
           onChangePage={onChangePage}
           onDeleteItem={onDeleteItem}
         />

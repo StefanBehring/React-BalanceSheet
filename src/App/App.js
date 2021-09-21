@@ -69,7 +69,6 @@ function App() {
         </Route>
         <Route exact path="/">
           <BalanceSheet
-            balanceLocalStorage={balanceLocalStorage}
             onChangePage={changePageHandler}
             onDeleteItem={deleteItemHandler}
           />

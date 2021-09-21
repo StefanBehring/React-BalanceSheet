@@ -1,14 +1,9 @@
 import styled from 'styled-components'
 import BalancePosition from '../BalancePosition/BalancePosition'
 
-const BalanceSide = ({
-  balanceLocalStorage,
-  onChangePage,
-  onDeleteItem,
-  side,
-}) => {
+const BalanceSide = ({ onChangePage, onDeleteItem, side }) => {
   // Get types from localStorage
-  const types = balanceLocalStorage.types
+  const types = JSON.parse(localStorage.getItem('balance')).types
 
   const BalanceSideSection = styled.section`
     background-color: var(--color-secondary);
@@ -39,7 +34,6 @@ const BalanceSide = ({
           key={`${side}-${type}`}
           side={side}
           type={type}
-          balanceLocalStorage={balanceLocalStorage}
           onChangePage={onChangePage}
           onDeleteItem={onDeleteItem}
         />
