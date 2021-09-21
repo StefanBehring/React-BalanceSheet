@@ -2,27 +2,17 @@ import styled from 'styled-components'
 import BalanceSheet from '../Balance/BalanceSheet/BalanceSheet'
 import LocalStorageInit from './LocalStorageInit'
 import { useState } from 'react'
-import ItemFormular from '../ItemFormular/ItemFormular'
+import AddItem from '../Forms/AddItem/AddItem'
 import { Route, Switch } from 'react-router'
+import EditItem from '../Forms/EditItem/EditItem'
 
 function App() {
   // LocalStorage init
   LocalStorageInit()
 
-  const [page, setPage] = useState('main')
-  const [side, setSide] = useState('')
-  const [type, setType] = useState('')
-  const [itemId, setItemId] = useState('')
   const [balanceLocalStorage, setBalanceLocalStorage] = useState(
     JSON.parse(localStorage.getItem('balance'))
   )
-
-  const changePageHandler = (job, doSide, doType, doId) => {
-    setPage(job)
-    setSide(doSide)
-    setType(doType)
-    setItemId(doId)
-  }
 
   const deleteItemHandler = deleteItemId => {
     const newItems = balanceLocalStorage.items.filter(
@@ -62,16 +52,13 @@ function App() {
       </header>
       <Switch>
         <Route exact path="/add/:side/:type">
-          <ItemFormular job={page} side={side} type={type} />
+          <AddItem />
         </Route>
-        <Route exact path="/edit/:id">
-          <ItemFormular job={page} id={itemId} />
+        <Route exact path="/edit/:itemId">
+          <EditItem />
         </Route>
         <Route exact path="/">
-          <BalanceSheet
-            onChangePage={changePageHandler}
-            onDeleteItem={deleteItemHandler}
-          />
+          <BalanceSheet onDeleteItem={deleteItemHandler} />
         </Route>
       </Switch>
       <AppFooter className="app__footer">
