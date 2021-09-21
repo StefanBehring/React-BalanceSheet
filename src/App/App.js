@@ -3,6 +3,7 @@ import BalanceSheet from '../BalanceSheet/BalanceSheet'
 import LocalStorageInit from './LocalStorageInit'
 import { useState } from 'react'
 import ItemFormular from '../ItemFormular/ItemFormular'
+import { Route, Switch } from 'react-router'
 
 function App() {
   // LocalStorage init
@@ -59,21 +60,21 @@ function App() {
       <header className="app__header">
         <AppTitle>Balance Sheet</AppTitle>
       </header>
-      {page === 'main' ? (
-        <BalanceSheet
-          balanceLocalStorage={balanceLocalStorage}
-          onChangePage={changePageHandler}
-          onDeleteItem={deleteItemHandler}
-        />
-      ) : (
-        ''
-      )}
-      {page === 'add' ? (
-        <ItemFormular job={page} side={side} type={type} />
-      ) : (
-        ''
-      )}
-      {page === 'edit' ? <ItemFormular job={page} id={itemId} /> : ''}
+      <Switch>
+        <Route exact path="/add/:side/:type">
+          <ItemFormular job={page} side={side} type={type} />
+        </Route>
+        <Route exact path="/edit/:id">
+          <ItemFormular job={page} id={itemId} />
+        </Route>
+        <Route exact path="/">
+          <BalanceSheet
+            balanceLocalStorage={balanceLocalStorage}
+            onChangePage={changePageHandler}
+            onDeleteItem={deleteItemHandler}
+          />
+        </Route>
+      </Switch>
       <AppFooter className="app__footer">
         <a
           href="https://github.com/StefanBehring/React-Privatbilanz"
