@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import { useParams } from 'react-router'
-
-import './EditItem.css'
+import styled from 'styled-components'
 
 const EditItem = () => {
   // Get item by id from localStorage
   const { itemId } = useParams()
 
   const item = JSON.parse(localStorage.getItem('balance')).items.find(
-    itemFind => itemFind.id === Number.parseInt(itemId)
+    itemFind => itemFind.id === itemId
   )
 
   const [title, setTitle] = useState(item.title)
@@ -38,27 +37,20 @@ const EditItem = () => {
     }
 
     const balance = JSON.parse(localStorage.getItem('balance'))
-    const itemIndex = balance.items
-      .map(el => el.id)
-      .indexOf(Number.parseInt(itemId))
+    const itemIndex = balance.items.map(el => el.id).indexOf(itemId)
     balance.items[itemIndex] = editObj
     localStorage.setItem('balance', JSON.stringify(balance))
   }
 
   return (
-    <main className="main">
-      <section className="item-formular">
-        <h2 className="item-formular__title">Edit Item</h2>
-        <form
-          className="item-formular__form"
-          action="/"
-          onSubmit={editItemHandler}
-        >
+    <Main>
+      <ItemFormular>
+        <ItemFormularTitle>Edit Item</ItemFormularTitle>
+        <ItemFormularForm action="/" onSubmit={editItemHandler}>
           <label className="item-formular__label" htmlFor="title">
             Title
           </label>
-          <input
-            className="item-formular__input"
+          <ItemFormularInput
             type="text"
             id="title"
             name="title"
@@ -80,8 +72,7 @@ const EditItem = () => {
           <label className="item-formular__label" htmlFor="amount">
             Amount
           </label>
-          <input
-            className="item-formular__input"
+          <ItemFormularInput
             type="number"
             id="amount"
             name="amount"
@@ -90,11 +81,84 @@ const EditItem = () => {
             min="0.01"
             value={amount}
           />
-          <button className="item-formular__button">Edit Item</button>
-        </form>
-      </section>
-    </main>
+          <ItemFormularButton>Edit Item</ItemFormularButton>
+        </ItemFormularForm>
+      </ItemFormular>
+    </Main>
   )
 }
+
+const Main = styled.main`
+  background-color: var(--color-light);
+  border: 1px solid var(--color-button-border);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  width: 320px;
+
+  @media screen and (min-width: 760px) {
+    flex-direction: row;
+    width: 720px;
+  }
+`
+
+const ItemFormular = styled.section`
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-button-border);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0.5rem;
+  width: 300px;
+
+  @media screen and (min-width: 760px) {
+    width: 700px;
+  }
+`
+
+const ItemFormularTitle = styled.h2`
+  margin: 0.5rem 0.3rem 0.3rem;
+  padding: 0;
+`
+
+const ItemFormularForm = styled.form`
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-button-border);
+  border-radius: 20px;
+  color: var(--color-light);
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0.5rem;
+  width: 280px;
+
+  @media screen and (min-width: 760px) {
+    width: 680px;
+  }
+`
+
+const ItemFormularInput = styled.input`
+  font-family: var(--font-family);
+  margin-bottom: 0.5rem;
+`
+
+const ItemFormularButton = styled.button`
+  align-self: center;
+  background-color: var(--color-button-green);
+  border: 1px solid var(--color-button-border);
+  border-radius: 20px;
+  color: var(--color-light);
+  font-family: var(--font-family);
+  padding: 0.3rem 0.5rem;
+  width: fit-content;
+  transition: all 0.3s ease-in;
+
+  &:hover {
+    background-color: var(--color-button-green-hover);
+  }
+`
 
 export default EditItem
