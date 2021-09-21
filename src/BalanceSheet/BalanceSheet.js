@@ -1,23 +1,23 @@
-import BalanceSide from '../BalanceSide/BalanceSide';
-import './BalanceSheet.css';
+import BalanceSide from '../BalanceSide/BalanceSide'
+import './BalanceSheet.css'
 
 const BalanceSheet = ({ balanceLocalStorage, onChangePage, onDeleteItem }) => {
-	// Get sides from localStorage
-	const sides = balanceLocalStorage.sides;
+  // Get sides from localStorage
+  const sides = balanceLocalStorage.sides
 
-	return (
-		<main className='main'>
-			{sides.map((side) => (
-				<BalanceSide
-					key={side}
-					side={side}
-					balanceLocalStorage={balanceLocalStorage}
-					onChangePage={onChangePage}
-					onDeleteItem={onDeleteItem}
-				/>
-			))}
-		</main>
-	);
-};
+  return (
+    <main className="main">
+      {sides.map(side => (
+        <BalanceSide
+          key={side}
+          side={side}
+          balanceLocalStorage={balanceLocalStorage}
+          onChangePage={onChangePage}
+          onDeleteItem={onDeleteItem}
+        />
+      ))}
+    </main>
+  )
+}
 
-export default BalanceSheet;
+export default BalanceSheet

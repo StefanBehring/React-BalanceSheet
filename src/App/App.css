@@ -1,21 +1,21 @@
 .app {
-	display: flex;
-	flex-direction: column;
-	margin: 0 auto;
-	width: 350px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 350px;
 }
 
 .app__title {
-	color: var(--color-secondary);
-	text-align: center;
+  color: var(--color-secondary);
+  text-align: center;
 }
 
 .app__footer {
-	text-align: center;
+  text-align: center;
 }
 
 @media screen and (min-width: 760px) {
-	.app {
-		width: 750px;
-	}
+  .app {
+    width: 750px;
+  }
 }

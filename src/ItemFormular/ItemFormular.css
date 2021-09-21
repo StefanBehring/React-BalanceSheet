@@ -1,74 +1,74 @@
 .main {
-	background-color: var(--color-light);
-	border: 1px solid var(--color-button-border);
-	border-radius: 20px;
-	display: flex;
-	flex-direction: column;
-	margin: 1rem auto;
-	padding: 0.5rem;
-	width: 320px;
+  background-color: var(--color-light);
+  border: 1px solid var(--color-button-border);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  width: 320px;
 }
 
 .item-formular {
-	background-color: var(--color-secondary);
-	border: 1px solid var(--color-button-border);
-	border-radius: 20px;
-	display: flex;
-	flex-direction: column;
-	margin: 0 auto;
-	padding: 0.5rem;
-	width: 300px;
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-button-border);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0.5rem;
+  width: 300px;
 }
 
 .item-formular__title {
-	margin: 0.5rem 0.3rem 0.3rem;
-	padding: 0;
+  margin: 0.5rem 0.3rem 0.3rem;
+  padding: 0;
 }
 
 .item-formular__form {
-	background-color: var(--color-primary);
-	border: 1px solid var(--color-button-border);
-	border-radius: 20px;
-	color: var(--color-light);
-	display: flex;
-	flex-direction: column;
-	margin: 0 auto;
-	padding: 0.5rem;
-	width: 280px;
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-button-border);
+  border-radius: 20px;
+  color: var(--color-light);
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0.5rem;
+  width: 280px;
 }
 
 .item-formular__input {
-	font-family: var(--font-family);
-	margin-bottom: 0.5rem;
+  font-family: var(--font-family);
+  margin-bottom: 0.5rem;
 }
 
 .item-formular__button {
-	align-self: center;
-	background-color: var(--color-button-green);
-	border: 1px solid var(--color-button-border);
-	border-radius: 20px;
-	color: var(--color-light);
-	font-family: var(--font-family);
-	padding: 0.3rem 0.5rem;
-	width: fit-content;
-	transition: all 0.3s ease-in;
+  align-self: center;
+  background-color: var(--color-button-green);
+  border: 1px solid var(--color-button-border);
+  border-radius: 20px;
+  color: var(--color-light);
+  font-family: var(--font-family);
+  padding: 0.3rem 0.5rem;
+  width: fit-content;
+  transition: all 0.3s ease-in;
 }
 
 .item-formular__button:hover {
-	background-color: var(--color-button-green-hover);
+  background-color: var(--color-button-green-hover);
 }
 
 @media screen and (min-width: 760px) {
-	.main {
-		flex-direction: row;
-		width: 720px;
-	}
+  .main {
+    flex-direction: row;
+    width: 720px;
+  }
 
-	.item-formular {
-		width: 700px;
-	}
+  .item-formular {
+    width: 700px;
+  }
 
-	.item-formular__form {
-		width: 680px;
-	}
+  .item-formular__form {
+    width: 680px;
+  }
 }
