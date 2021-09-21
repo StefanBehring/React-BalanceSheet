@@ -1,9 +1,9 @@
 import styled from 'styled-components'
+import { useState } from 'react'
+import { Route, Switch } from 'react-router'
 import BalanceSheet from '../Balance/BalanceSheet/BalanceSheet'
 import LocalStorageInit from './LocalStorageInit'
-import { useState } from 'react'
 import AddItem from '../Forms/AddItem/AddItem'
-import { Route, Switch } from 'react-router'
 import EditItem from '../Forms/EditItem/EditItem'
 
 function App() {
@@ -61,7 +61,7 @@ function App() {
           <BalanceSheet onDeleteItem={deleteItemHandler} />
         </Route>
       </Switch>
-      <AppFooter className="app__footer">
+      <AppFooter>
         <a
           href="https://github.com/StefanBehring/React-Privatbilanz"
           target="_blank"
