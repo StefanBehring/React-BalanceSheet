@@ -1,27 +1,18 @@
 import styled from 'styled-components'
-import BalanceSheet from '../BalanceSheet/BalanceSheet'
-import LocalStorageInit from './LocalStorageInit'
 import { useState } from 'react'
-import ItemFormular from '../ItemFormular/ItemFormular'
+import { Route, Switch } from 'react-router'
+import BalanceSheet from '../Balance/BalanceSheet/BalanceSheet'
+import LocalStorageInit from './LocalStorageInit'
+import AddItem from '../Forms/AddItem/AddItem'
+import EditItem from '../Forms/EditItem/EditItem'
 
 function App() {
   // LocalStorage init
   LocalStorageInit()
 
-  const [page, setPage] = useState('main')
-  const [side, setSide] = useState('')
-  const [type, setType] = useState('')
-  const [itemId, setItemId] = useState('')
   const [balanceLocalStorage, setBalanceLocalStorage] = useState(
     JSON.parse(localStorage.getItem('balance'))
   )
-
-  const changePageHandler = (job, doSide, doType, doId) => {
-    setPage(job)
-    setSide(doSide)
-    setType(doType)
-    setItemId(doId)
-  }
 
   const deleteItemHandler = deleteItemId => {
     const newItems = balanceLocalStorage.items.filter(
@@ -35,46 +26,23 @@ function App() {
     setBalanceLocalStorage(balance)
   }
 
-  const AppDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    width: 350px;
-    @media screen and (min-width: 760px) {
-      width: 750px;
-    }
-  `
-
-  const AppTitle = styled.h1`
-    color: var(--color-secondary);
-    text-align: center;
-  `
-
-  const AppFooter = styled.footer`
-    text-align: center;
-  `
-
   return (
     <AppDiv>
       <header className="app__header">
         <AppTitle>Balance Sheet</AppTitle>
       </header>
-      {page === 'main' ? (
-        <BalanceSheet
-          balanceLocalStorage={balanceLocalStorage}
-          onChangePage={changePageHandler}
-          onDeleteItem={deleteItemHandler}
-        />
-      ) : (
-        ''
-      )}
-      {page === 'add' ? (
-        <ItemFormular job={page} side={side} type={type} />
-      ) : (
-        ''
-      )}
-      {page === 'edit' ? <ItemFormular job={page} id={itemId} /> : ''}
-      <AppFooter className="app__footer">
+      <Switch>
+        <Route exact path="/add/:side/:type">
+          <AddItem />
+        </Route>
+        <Route exact path="/edit/:itemId">
+          <EditItem />
+        </Route>
+        <Route exact path="/">
+          <BalanceSheet onDeleteItem={deleteItemHandler} />
+        </Route>
+      </Switch>
+      <AppFooter>
         <a
           href="https://github.com/StefanBehring/React-Privatbilanz"
           target="_blank"
@@ -87,4 +55,24 @@ function App() {
     </AppDiv>
   )
 }
+
+const AppDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 350px;
+  @media screen and (min-width: 760px) {
+    width: 750px;
+  }
+`
+
+const AppTitle = styled.h1`
+  color: var(--color-secondary);
+  text-align: center;
+`
+
+const AppFooter = styled.footer`
+  text-align: center;
+`
+
 export default App
