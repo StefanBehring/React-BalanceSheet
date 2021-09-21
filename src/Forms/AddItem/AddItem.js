@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useParams } from 'react-router'
 import { v4 as uuidv4 } from 'uuid'
 
+import './AddItem.css'
+
 const AddItem = () => {
   const { side, type } = useParams()
 
