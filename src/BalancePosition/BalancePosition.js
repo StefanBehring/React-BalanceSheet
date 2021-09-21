@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import BalanceItem from '../BalanceItem/BalanceItem'
-import './BalancePosition.css'
 
 const BalancePosition = ({
   balanceLocalStorage,
