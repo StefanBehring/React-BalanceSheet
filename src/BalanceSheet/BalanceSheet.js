@@ -22,7 +22,7 @@ const BalanceSheet = ({ balanceLocalStorage, onChangePage, onDeleteItem }) => {
   `
 
   return (
-    <main className="main">
+    <Main>
       {sides.map(side => (
         <BalanceSide
           key={side}
@@ -32,7 +32,7 @@ const BalanceSheet = ({ balanceLocalStorage, onChangePage, onDeleteItem }) => {
           onDeleteItem={onDeleteItem}
         />
       ))}
-    </main>
+    </Main>
   )
 }
 
