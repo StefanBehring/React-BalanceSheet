@@ -1,3 +1,4 @@
+import { useHistory } from 'react-router'
 import styled from 'styled-components'
 import BalanceItem from '../BalanceItem/BalanceItem'
 import BalancePositionHeader from './BalancePositionHeader'
@@ -8,8 +9,11 @@ const BalancePosition = ({ onChangePage, onDeleteItem, side, type }) => {
     item => item.side === side && item.type === type
   )
 
+  const history = useHistory()
+
   const addItemClickHandler = () => {
-    onChangePage('add', side, type, '')
+    let path = `/add/${side}/${type}`
+    history.push(path)
   }
 
   return (

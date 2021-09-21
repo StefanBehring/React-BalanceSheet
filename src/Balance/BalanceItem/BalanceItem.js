@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router'
 import styled from 'styled-components'
 import BalanceItemHeader from './BalanceItemHeader'
 import BalanceItemMenu from './BalanceItemMenu'
@@ -11,12 +12,15 @@ const BalanceItem = ({ onChangePage, onDeleteItem, itemId }) => {
 
   const [showMenu, setShowMenu] = useState(false)
 
+  const history = useHistory()
+
   const showMenuButtonClickHandler = () => {
     setShowMenu(!showMenu)
   }
 
   const editItemClickHandler = () => {
-    onChangePage('edit', item.side, item.type, itemId)
+    let path = `/edit/` + itemId
+    history.push(path)
   }
 
   const deleteItemClickHandler = () => {
