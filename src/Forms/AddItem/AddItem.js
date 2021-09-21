@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { useParams } from 'react-router'
 import { v4 as uuidv4 } from 'uuid'
-
-import './AddItem.css'
+import styled from 'styled-components'
 
 const AddItem = () => {
   const { side, type } = useParams()
@@ -38,15 +37,14 @@ const AddItem = () => {
   }
 
   return (
-    <main className="main">
-      <section className="item-formular">
-        <h2 className="item-formular__title">Add Item</h2>
-        <form className="item-formular__form" onSubmit={addItemHandler}>
+    <Main>
+      <ItemFormular>
+        <ItemFormularTitle>Add Item</ItemFormularTitle>
+        <ItemFormularForm action="/" onSubmit={addItemHandler}>
           <label className="item-formular__label" htmlFor="title">
             Title
           </label>
-          <input
-            className="item-formular__input"
+          <ItemFormularInput
             type="text"
             id="title"
             name="title"
@@ -68,8 +66,7 @@ const AddItem = () => {
           <label className="item-formular__label" htmlFor="amount">
             Amount
           </label>
-          <input
-            className="item-formular__input"
+          <ItemFormularInput
             type="number"
             id="amount"
             name="amount"
@@ -78,11 +75,84 @@ const AddItem = () => {
             min="0.01"
             value={amount}
           />
-          <button className="item-formular__button">Add Item</button>
-        </form>
-      </section>
-    </main>
+          <ItemFormularButton>Add Item</ItemFormularButton>
+        </ItemFormularForm>
+      </ItemFormular>
+    </Main>
   )
 }
+
+const Main = styled.main`
+  background-color: var(--color-light);
+  border: 1px solid var(--color-button-border);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  width: 320px;
+
+  @media screen and (min-width: 760px) {
+    flex-direction: row;
+    width: 720px;
+  }
+`
+
+const ItemFormular = styled.section`
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-button-border);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0.5rem;
+  width: 300px;
+
+  @media screen and (min-width: 760px) {
+    width: 700px;
+  }
+`
+
+const ItemFormularTitle = styled.h2`
+  margin: 0.5rem 0.3rem 0.3rem;
+  padding: 0;
+`
+
+const ItemFormularForm = styled.form`
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-button-border);
+  border-radius: 20px;
+  color: var(--color-light);
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0.5rem;
+  width: 280px;
+
+  @media screen and (min-width: 760px) {
+    width: 680px;
+  }
+`
+
+const ItemFormularInput = styled.input`
+  font-family: var(--font-family);
+  margin-bottom: 0.5rem;
+`
+
+const ItemFormularButton = styled.button`
+  align-self: center;
+  background-color: var(--color-button-green);
+  border: 1px solid var(--color-button-border);
+  border-radius: 20px;
+  color: var(--color-light);
+  font-family: var(--font-family);
+  padding: 0.3rem 0.5rem;
+  width: fit-content;
+  transition: all 0.3s ease-in;
+
+  &:hover {
+    background-color: var(--color-button-green-hover);
+  }
+`
 
 export default AddItem
