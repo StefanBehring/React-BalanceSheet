@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import BalanceSheet from '../BalanceSheet/BalanceSheet'
+import BalanceSheet from '../Balance/BalanceSheet/BalanceSheet'
 import LocalStorageInit from './LocalStorageInit'
 import { useState } from 'react'
 import ItemFormular from '../ItemFormular/ItemFormular'
