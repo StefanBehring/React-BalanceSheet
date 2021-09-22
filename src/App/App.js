@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import { useState } from 'react'
 import { Route, Switch } from 'react-router'
 import BalanceSheet from '../Balance/BalanceSheet/BalanceSheet'

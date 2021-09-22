@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 const BalanceItemMenu = ({ onEditItemClick, onDeleteItemClick }) => {
   return (
@@ -12,6 +12,7 @@ const BalanceItemMenu = ({ onEditItemClick, onDeleteItemClick }) => {
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
+  margin-top: 0.5rem;
 `
 
 const EditButton = styled.button`
