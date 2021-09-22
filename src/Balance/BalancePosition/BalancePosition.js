@@ -17,7 +17,7 @@ const BalancePosition = ({ onDeleteItem, side, type }) => {
   }
 
   return (
-    <BalancePositionDiv>
+    <Wrapper>
       <BalancePositionHeader
         type={type}
         onAddItemButtonClick={addItemClickHandler}
@@ -31,11 +31,11 @@ const BalancePosition = ({ onDeleteItem, side, type }) => {
           />
         )
       })}
-    </BalancePositionDiv>
+    </Wrapper>
   )
 }
 
-const BalancePositionDiv = styled.div`
+const Wrapper = styled.div`
   background-color: var(--color-primary);
   border: 1px solid var(--color-button-border);
   border-radius: 20px;

@@ -2,19 +2,19 @@ import styled from 'styled-components'
 
 const BalanceItemMenu = ({ onEditItemClick, onDeleteItemClick }) => {
   return (
-    <BalanceItemMenuDiv>
-      <BalanceItemEdit onClick={onEditItemClick}>Edit</BalanceItemEdit>
-      <BalanceItemDelete onClick={onDeleteItemClick}>Delete</BalanceItemDelete>
-    </BalanceItemMenuDiv>
+    <Wrapper>
+      <EditButton onClick={onEditItemClick}>Edit</EditButton>
+      <DeleteButton onClick={onDeleteItemClick}>Delete</DeleteButton>
+    </Wrapper>
   )
 }
 
-const BalanceItemMenuDiv = styled.div`
+const Wrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
 `
 
-const BalanceItemEdit = styled.button`
+const EditButton = styled.button`
   background-color: var(--color-button-grey);
   border: 1px solid var(--color-button-border);
   border-radius: 20px;
@@ -28,7 +28,7 @@ const BalanceItemEdit = styled.button`
   }
 `
 
-const BalanceItemDelete = styled.button`
+const DeleteButton = styled.button`
   background-color: var(--color-button-red);
   border: 1px solid var(--color-button-border);
   border-radius: 20px;

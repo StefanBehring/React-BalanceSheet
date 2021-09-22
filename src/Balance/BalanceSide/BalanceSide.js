@@ -6,8 +6,8 @@ const BalanceSide = ({ onDeleteItem, side }) => {
   const types = JSON.parse(localStorage.getItem('balance')).types
 
   return (
-    <BalanceSideSection>
-      <BalanceSideTitle>{side}</BalanceSideTitle>
+    <Wrapper>
+      <Title>{side}</Title>
       {types.map(type => (
         <BalancePosition
           key={`${side}-${type}`}
@@ -16,11 +16,11 @@ const BalanceSide = ({ onDeleteItem, side }) => {
           onDeleteItem={onDeleteItem}
         />
       ))}
-    </BalanceSideSection>
+    </Wrapper>
   )
 }
 
-const BalanceSideSection = styled.section`
+const Wrapper = styled.section`
   background-color: var(--color-secondary);
   border: 1px solid var(--color-button-border);
   border-radius: 20px;
@@ -36,7 +36,7 @@ const BalanceSideSection = styled.section`
   }
 `
 
-const BalanceSideTitle = styled.h2`
+const Title = styled.h2`
   margin: 0.5rem 0.3rem 0.3rem;
   padding: 0;
 `

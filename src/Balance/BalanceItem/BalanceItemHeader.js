@@ -2,22 +2,22 @@ import styled from 'styled-components'
 
 const BalanceItemHeader = ({ itemTitle, showMenu, onMenuButtonClick }) => {
   return (
-    <BalanceItemHeaderDiv>
+    <Wrapper>
       <h4 className="balance-item__title">{itemTitle}</h4>
-      <BalanceItemShowMenu onClick={onMenuButtonClick}>
+      <ShowItemMenuButton onClick={onMenuButtonClick}>
         {showMenu ? '-' : '+'}
-      </BalanceItemShowMenu>
-    </BalanceItemHeaderDiv>
+      </ShowItemMenuButton>
+    </Wrapper>
   )
 }
 
-const BalanceItemHeaderDiv = styled.div`
+const Wrapper = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
 `
 
-const BalanceItemShowMenu = styled.button`
+const ShowItemMenuButton = styled.button`
   background-color: var(--color-button-blue);
   border: 1px solid var(--color-button-border);
   color: var(--color-light);
