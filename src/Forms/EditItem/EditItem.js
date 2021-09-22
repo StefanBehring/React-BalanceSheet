@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { Redirect, useParams } from 'react-router'
 import styled from 'styled-components/macro'
-import BackButton from '../BackButton/BackButton'
+import BackButton from '../Utility/BackButton/BackButton'
+import FormularTitle from '../Utility/FormularTitle/FormularTitle'
+import SubmitButton from '../Utility/SubmitButton/SubmitButton'
 
 const EditItem = () => {
   // Get item by id from localStorage
@@ -52,7 +54,7 @@ const EditItem = () => {
   return (
     <Main>
       <ItemFormular>
-        <ItemFormularTitle>Edit Item</ItemFormularTitle>
+        <FormularTitle title="Edit Item" />
         <ItemFormularForm onSubmit={editItemHandler}>
           <label className="item-formular__label" htmlFor="title">
             Title
@@ -88,7 +90,7 @@ const EditItem = () => {
             value={amount}
           />
           <ButtonMenu>
-            <ItemFormularButton>Edit Item</ItemFormularButton>
+            <SubmitButton title="Edit Item" />
             <BackButton />
           </ButtonMenu>
         </ItemFormularForm>
@@ -128,11 +130,6 @@ const ItemFormular = styled.section`
   }
 `
 
-const ItemFormularTitle = styled.h2`
-  margin: 0.5rem 0.3rem 0.3rem;
-  padding: 0;
-`
-
 const ItemFormularForm = styled.form`
   background-color: var(--color-primary);
   border: 1px solid var(--color-button-border);
@@ -162,23 +159,6 @@ const ItemFormularTextarea = styled.textarea`
 const ButtonMenu = styled.div`
   display: flex;
   justify-content: space-evenly;
-`
-
-const ItemFormularButton = styled.button`
-  align-self: center;
-  background-color: var(--color-button-green);
-  border: 1px solid var(--color-button-border);
-  border-radius: 20px;
-  color: var(--color-light);
-  font-family: var(--font-family);
-  font-size: 1rem;
-  padding: 0.3rem 0.5rem;
-  width: fit-content;
-  transition: all 0.3s ease-in;
-
-  &:hover {
-    background-color: var(--color-button-green-hover);
-  }
 `
 
 export default EditItem

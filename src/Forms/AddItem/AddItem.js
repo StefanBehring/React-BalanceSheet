@@ -2,7 +2,9 @@ import { useState } from 'react'
 import { Redirect, useParams } from 'react-router'
 import { v4 as uuidv4 } from 'uuid'
 import styled from 'styled-components/macro'
-import BackButton from '../BackButton/BackButton'
+import BackButton from '../Utility/BackButton/BackButton'
+import FormularTitle from '../Utility/FormularTitle/FormularTitle'
+import SubmitButton from '../Utility/SubmitButton/SubmitButton'
 
 const AddItem = () => {
   const { side, type } = useParams()
@@ -46,9 +48,7 @@ const AddItem = () => {
   return (
     <Main>
       <ItemFormular>
-        <ItemFormularTitle>
-          Add Item - {side} {type}
-        </ItemFormularTitle>
+        <FormularTitle title={`Add Item - ${side} ${type}`} />
         <ItemFormularForm onSubmit={addItemHandler}>
           <label className="item-formular__label" htmlFor="title">
             Title
@@ -84,7 +84,7 @@ const AddItem = () => {
             value={amount}
           />
           <ButtonMenu>
-            <ItemFormularButton>Add Item</ItemFormularButton>
+            <SubmitButton title="Add Item" />
             <BackButton />
           </ButtonMenu>
         </ItemFormularForm>
@@ -124,11 +124,6 @@ const ItemFormular = styled.section`
   }
 `
 
-const ItemFormularTitle = styled.h2`
-  margin: 0.5rem 0.3rem 0.3rem;
-  padding: 0;
-`
-
 const ItemFormularForm = styled.form`
   background-color: var(--color-primary);
   border: 1px solid var(--color-button-border);
@@ -158,23 +153,6 @@ const ItemFormularTextarea = styled.textarea`
 const ButtonMenu = styled.div`
   display: flex;
   justify-content: space-evenly;
-`
-
-const ItemFormularButton = styled.button`
-  align-self: center;
-  background-color: var(--color-button-green);
-  border: 1px solid var(--color-button-border);
-  border-radius: 20px;
-  color: var(--color-light);
-  font-family: var(--font-family);
-  font-size: 1rem;
-  padding: 0.3rem 0.5rem;
-  width: fit-content;
-  transition: all 0.3s ease-in;
-
-  &:hover {
-    background-color: var(--color-button-green-hover);
-  }
 `
 
 export default AddItem
