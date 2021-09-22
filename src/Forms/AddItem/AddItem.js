@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useParams } from 'react-router'
+import { Redirect, useParams } from 'react-router'
 import { v4 as uuidv4 } from 'uuid'
 import styled from 'styled-components/macro'
 import BackButton from '../BackButton/BackButton'
@@ -10,6 +10,7 @@ const AddItem = () => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [amount, setAmount] = useState(0)
+  const [addDone, setAddDone] = useState(false)
 
   const changeTitleHandler = event => {
     setTitle(event.target.value)
@@ -35,6 +36,11 @@ const AddItem = () => {
     const balance = JSON.parse(localStorage.getItem('balance'))
     balance.items.push(addObj)
     localStorage.setItem('balance', JSON.stringify(balance))
+    setAddDone(true)
+  }
+
+  if (addDone) {
+    return <Redirect to="/" />
   }
 
   return (
@@ -43,7 +49,7 @@ const AddItem = () => {
         <ItemFormularTitle>
           Add Item - {side} {type}
         </ItemFormularTitle>
-        <ItemFormularForm action="/" onSubmit={addItemHandler}>
+        <ItemFormularForm onSubmit={addItemHandler}>
           <label className="item-formular__label" htmlFor="title">
             Title
           </label>
@@ -57,8 +63,7 @@ const AddItem = () => {
           <label className="item-formular__label" htmlFor="description">
             Description
           </label>
-          <textarea
-            className="item-formular__input"
+          <ItemFormularTextarea
             id="description"
             name="description"
             onChange={changeDescriptionHandler}
@@ -145,6 +150,11 @@ const ItemFormularInput = styled.input`
   margin-bottom: 0.5rem;
 `
 
+const ItemFormularTextarea = styled.textarea`
+  font-family: var(--font-family);
+  margin-bottom: 0.5rem;
+`
+
 const ButtonMenu = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -157,6 +167,7 @@ const ItemFormularButton = styled.button`
   border-radius: 20px;
   color: var(--color-light);
   font-family: var(--font-family);
+  font-size: 1rem;
   padding: 0.3rem 0.5rem;
   width: fit-content;
   transition: all 0.3s ease-in;

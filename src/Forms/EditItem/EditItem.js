@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { useParams } from 'react-router'
+import { Redirect, useParams } from 'react-router'
 import styled from 'styled-components/macro'
+import BackButton from '../BackButton/BackButton'
 
 const EditItem = () => {
   // Get item by id from localStorage
@@ -13,6 +14,7 @@ const EditItem = () => {
   const [title, setTitle] = useState(item.title)
   const [description, setDescription] = useState(item.description)
   const [amount, setAmount] = useState(Number.parseFloat(item.amount))
+  const [editDone, setEditDone] = useState(false)
 
   const changeTitleHandler = event => {
     setTitle(event.target.value)
@@ -40,13 +42,18 @@ const EditItem = () => {
     const itemIndex = balance.items.map(el => el.id).indexOf(itemId)
     balance.items[itemIndex] = editObj
     localStorage.setItem('balance', JSON.stringify(balance))
+    setEditDone(true)
+  }
+
+  if (editDone) {
+    return <Redirect to="/" />
   }
 
   return (
     <Main>
       <ItemFormular>
         <ItemFormularTitle>Edit Item</ItemFormularTitle>
-        <ItemFormularForm action="/" onSubmit={editItemHandler}>
+        <ItemFormularForm onSubmit={editItemHandler}>
           <label className="item-formular__label" htmlFor="title">
             Title
           </label>
@@ -60,8 +67,7 @@ const EditItem = () => {
           <label className="item-formular__label" htmlFor="description">
             Description
           </label>
-          <textarea
-            className="item-formular__input"
+          <ItemFormularTextarea
             id="description"
             name="description"
             onChange={changeDescriptionHandler}
@@ -81,7 +87,10 @@ const EditItem = () => {
             min="0.01"
             value={amount}
           />
-          <ItemFormularButton>Edit Item</ItemFormularButton>
+          <ButtonMenu>
+            <ItemFormularButton>Edit Item</ItemFormularButton>
+            <BackButton />
+          </ButtonMenu>
         </ItemFormularForm>
       </ItemFormular>
     </Main>
@@ -145,6 +154,16 @@ const ItemFormularInput = styled.input`
   margin-bottom: 0.5rem;
 `
 
+const ItemFormularTextarea = styled.textarea`
+  font-family: var(--font-family);
+  margin-bottom: 0.5rem;
+`
+
+const ButtonMenu = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`
+
 const ItemFormularButton = styled.button`
   align-self: center;
   background-color: var(--color-button-green);
@@ -152,6 +171,7 @@ const ItemFormularButton = styled.button`
   border-radius: 20px;
   color: var(--color-light);
   font-family: var(--font-family);
+  font-size: 1rem;
   padding: 0.3rem 0.5rem;
   width: fit-content;
   transition: all 0.3s ease-in;
