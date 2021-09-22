@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import BalanceItem from '../BalanceItem/BalanceItem'
 import BalancePositionHeader from './BalancePositionHeader'
 

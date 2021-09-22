@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import BalanceSide from '../BalanceSide/BalanceSide'
 
 const BalanceSheet = ({ onDeleteItem }) => {

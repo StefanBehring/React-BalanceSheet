@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import BalancePosition from '../BalancePosition/BalancePosition'
 
 const BalanceSide = ({ onDeleteItem, side }) => {

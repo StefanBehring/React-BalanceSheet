@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useParams } from 'react-router'
 import { v4 as uuidv4 } from 'uuid'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 const AddItem = () => {
   const { side, type } = useParams()
@@ -39,7 +39,9 @@ const AddItem = () => {
   return (
     <Main>
       <ItemFormular>
-        <ItemFormularTitle>Add Item</ItemFormularTitle>
+        <ItemFormularTitle>
+          Add Item - {side} {type}
+        </ItemFormularTitle>
         <ItemFormularForm action="/" onSubmit={addItemHandler}>
           <label className="item-formular__label" htmlFor="title">
             Title

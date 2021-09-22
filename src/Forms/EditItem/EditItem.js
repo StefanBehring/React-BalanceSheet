@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useParams } from 'react-router'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 const EditItem = () => {
   // Get item by id from localStorage
