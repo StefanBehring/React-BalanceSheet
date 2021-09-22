@@ -28,25 +28,25 @@ const BalanceItem = ({ onDeleteItem, itemId }) => {
   }
 
   return (
-    <BalanceItemDiv>
+    <Wrapper>
       <BalanceItemHeader
         itemTitle={item.title}
         showMenu={showMenu}
         onMenuButtonClick={showMenuButtonClickHandler}
       />
-      <BalanceItemDesc>{item.description}</BalanceItemDesc>
-      <BalanceItemValue>{item.amount} €</BalanceItemValue>
+      <Description>{item.description}</Description>
+      <ItemValue>{item.amount} €</ItemValue>
       {showMenu && (
         <BalanceItemMenu
           onEditItemClick={editItemClickHandler}
           onDeleteItemClick={deleteItemClickHandler}
         />
       )}
-    </BalanceItemDiv>
+    </Wrapper>
   )
 }
 
-const BalanceItemDiv = styled.div`
+const Wrapper = styled.div`
   background-color: var(--color-light);
   border: 1px solid var(--color-button-border);
   border-radius: 20px;
@@ -61,11 +61,11 @@ const BalanceItemDiv = styled.div`
   }
 `
 
-const BalanceItemDesc = styled.p`
+const Description = styled.p`
   text-align: left;
 `
 
-const BalanceItemValue = styled.p`
+const ItemValue = styled.p`
   text-align: right;
 `
 

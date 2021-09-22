@@ -2,26 +2,24 @@ import styled from 'styled-components'
 
 const BalancePositionHeader = ({ type, onAddItemButtonClick }) => {
   return (
-    <BalancePositionHeaderDiv>
-      <BalancePositionTitle>{type}</BalancePositionTitle>
-      <BalancePositionAddItem onClick={onAddItemButtonClick}>
-        Add
-      </BalancePositionAddItem>
-    </BalancePositionHeaderDiv>
+    <Wrapper>
+      <Title>{type}</Title>
+      <AddItemButton onClick={onAddItemButtonClick}>Add</AddItemButton>
+    </Wrapper>
   )
 }
 
-const BalancePositionHeaderDiv = styled.div`
+const Wrapper = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
 `
 
-const BalancePositionTitle = styled.h3`
+const Title = styled.h3`
   color: var(--color-secondary);
 `
 
-const BalancePositionAddItem = styled.button`
+const AddItemButton = styled.button`
   background-color: var(--color-button-green);
   border: 1px solid var(--color-button-border);
   border-radius: 20px;
