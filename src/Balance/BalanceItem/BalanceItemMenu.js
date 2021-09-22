@@ -12,6 +12,7 @@ const BalanceItemMenu = ({ onEditItemClick, onDeleteItemClick }) => {
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
+  margin-top: 0.5rem;
 `
 
 const EditButton = styled.button`

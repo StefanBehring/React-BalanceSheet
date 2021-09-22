@@ -35,7 +35,7 @@ const BalanceItem = ({ onDeleteItem, itemId }) => {
         onMenuButtonClick={showMenuButtonClickHandler}
       />
       <Description>{item.description}</Description>
-      <ItemValue>{item.amount} €</ItemValue>
+      <ItemValue>{Number.parseFloat(item.amount).toFixed(2)} €</ItemValue>
       {showMenu && (
         <BalanceItemMenu
           onEditItemClick={editItemClickHandler}
@@ -66,6 +66,7 @@ const Description = styled.p`
 `
 
 const ItemValue = styled.p`
+  margin: 0.3rem 0;
   text-align: right;
 `
 

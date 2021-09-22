@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 const BalanceItemHeader = ({ itemTitle, showMenu, onMenuButtonClick }) => {
   return (
     <Wrapper>
-      <h4 className="balance-item__title">{itemTitle}</h4>
+      <Title>{itemTitle}</Title>
       <ShowItemMenuButton onClick={onMenuButtonClick}>
         {showMenu ? '-' : '+'}
       </ShowItemMenuButton>
@@ -15,6 +15,10 @@ const Wrapper = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
+`
+
+const Title = styled.h4`
+  margin: 0.4rem 0;
 `
 
 const ShowItemMenuButton = styled.button`
