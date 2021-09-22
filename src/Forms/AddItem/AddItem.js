@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useParams } from 'react-router'
 import { v4 as uuidv4 } from 'uuid'
 import styled from 'styled-components/macro'
+import BackButton from '../BackButton/BackButton'
 
 const AddItem = () => {
   const { side, type } = useParams()
@@ -77,7 +78,10 @@ const AddItem = () => {
             min="0.01"
             value={amount}
           />
-          <ItemFormularButton>Add Item</ItemFormularButton>
+          <ButtonMenu>
+            <ItemFormularButton>Add Item</ItemFormularButton>
+            <BackButton />
+          </ButtonMenu>
         </ItemFormularForm>
       </ItemFormular>
     </Main>
@@ -139,6 +143,11 @@ const ItemFormularForm = styled.form`
 const ItemFormularInput = styled.input`
   font-family: var(--font-family);
   margin-bottom: 0.5rem;
+`
+
+const ButtonMenu = styled.div`
+  display: flex;
+  justify-content: space-evenly;
 `
 
 const ItemFormularButton = styled.button`
