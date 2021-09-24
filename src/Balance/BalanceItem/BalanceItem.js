@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useHistory } from 'react-router'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import BalanceItemHeader from './BalanceItemHeader'
@@ -11,15 +10,8 @@ const BalanceItem = ({ balance, itemId, onDeleteItem }) => {
 
   const [showMenu, setShowMenu] = useState(false)
 
-  const history = useHistory()
-
   const showMenuButtonClickHandler = () => {
     setShowMenu(!showMenu)
-  }
-
-  const editItemClickHandler = () => {
-    let path = `/edit/` + itemId
-    history.push(path)
   }
 
   const deleteItemClickHandler = () => {
@@ -37,7 +29,7 @@ const BalanceItem = ({ balance, itemId, onDeleteItem }) => {
       <ItemValue>{Number.parseFloat(item.amount).toFixed(2)} €</ItemValue>
       {showMenu && (
         <BalanceItemMenu
-          onEditItemClick={editItemClickHandler}
+          editPath={`/edit/` + itemId}
           onDeleteItemClick={deleteItemClickHandler}
         />
       )}
