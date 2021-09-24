@@ -4,9 +4,9 @@ import BalanceItem from '../BalanceItem/BalanceItem'
 import BalancePositionHeader from './BalancePositionHeader'
 import PropTypes from 'prop-types'
 
-const BalancePosition = ({ onDeleteItem, side, type }) => {
+const BalancePosition = ({ balance, side, type, onDeleteItem }) => {
   // Get items from localStorage
-  const items = JSON.parse(localStorage.getItem('balance')).items.filter(
+  const items = balance.items.filter(
     item => item.side === side && item.type === type
   )
 
@@ -27,6 +27,7 @@ const BalancePosition = ({ onDeleteItem, side, type }) => {
         return (
           <BalanceItem
             key={item.id}
+            balance={balance}
             itemId={item.id}
             onDeleteItem={onDeleteItem}
           />
@@ -37,9 +38,10 @@ const BalancePosition = ({ onDeleteItem, side, type }) => {
 }
 
 BalancePosition.propTypes = {
-  onDeleteItem: PropTypes.func.isRequired,
+  balance: PropTypes.object.isRequired,
   side: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  onDeleteItem: PropTypes.func.isRequired,
 }
 
 const Wrapper = styled.div`

@@ -1,16 +1,20 @@
 import { useState } from 'react'
 import { Redirect, useParams } from 'react-router'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 import BackButton from '../Utility/BackButton/BackButton'
 import FormularTitle from '../Utility/FormularTitle/FormularTitle'
 import SubmitButton from '../Utility/SubmitButton/SubmitButton'
 
-const EditItem = () => {
+const EditItem = balance => {
   // Get item by id from localStorage
   const { itemId } = useParams()
 
-  const item = JSON.parse(localStorage.getItem('balance')).items.find(
-    itemFind => itemFind.id === itemId
+  console.table(balance)
+  console.log('itemId: ' + itemId + ' | is of type: ' + typeof itemId)
+
+  const item = balance.items.find(
+    itemFind => itemFind.id.toString() === itemId.toString()
   )
 
   const [title, setTitle] = useState(item.title)
@@ -40,10 +44,10 @@ const EditItem = () => {
       amount: Number.parseFloat(amount).toString(),
     }
 
-    const balance = JSON.parse(localStorage.getItem('balance'))
+    const newBalance = JSON.parse(localStorage.getItem('balance'))
     const itemIndex = balance.items.map(el => el.id).indexOf(itemId)
-    balance.items[itemIndex] = editObj
-    localStorage.setItem('balance', JSON.stringify(balance))
+    newBalance.items[itemIndex] = editObj
+    localStorage.setItem('balance', JSON.stringify(newBalance))
     setEditDone(true)
   }
 
@@ -97,6 +101,10 @@ const EditItem = () => {
       </ItemFormular>
     </Main>
   )
+}
+
+EditItem.propTypes = {
+  balance: PropTypes.object.isRequired,
 }
 
 const Main = styled.main`

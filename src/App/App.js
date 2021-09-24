@@ -36,10 +36,13 @@ function App() {
           <AddItem />
         </Route>
         <Route exact path="/edit/:itemId">
-          <EditItem />
+          <EditItem balance={balanceLocalStorage} />
         </Route>
         <Route exact path="/">
-          <BalanceSheet onDeleteItem={deleteItemHandler} />
+          <BalanceSheet
+            balance={balanceLocalStorage}
+            onDeleteItem={deleteItemHandler}
+          />
         </Route>
       </Switch>
       <AppFooter>
