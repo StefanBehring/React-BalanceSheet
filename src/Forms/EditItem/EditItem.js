@@ -6,12 +6,9 @@ import BackButton from '../Utility/BackButton/BackButton'
 import FormularTitle from '../Utility/FormularTitle/FormularTitle'
 import SubmitButton from '../Utility/SubmitButton/SubmitButton'
 
-const EditItem = balance => {
+const EditItem = ({ balance }) => {
   // Get item by id from localStorage
   const { itemId } = useParams()
-
-  console.table(balance)
-  console.log('itemId: ' + itemId + ' | is of type: ' + typeof itemId)
 
   const item = balance.items.find(
     itemFind => itemFind.id.toString() === itemId.toString()
