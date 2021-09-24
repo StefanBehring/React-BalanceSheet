@@ -6,7 +6,7 @@ import BackButton from '../Utility/BackButton/BackButton'
 import FormularTitle from '../Utility/FormularTitle/FormularTitle'
 import SubmitButton from '../Utility/SubmitButton/SubmitButton'
 
-const EditItem = ({ balance }) => {
+const EditItem = ({ balance, onEditSubmit }) => {
   // Get item by id from localStorage
   const { itemId } = useParams()
 
@@ -17,7 +17,7 @@ const EditItem = ({ balance }) => {
   const [title, setTitle] = useState(item.title)
   const [description, setDescription] = useState(item.description)
   const [amount, setAmount] = useState(Number.parseFloat(item.amount))
-  const [editDone, setEditDone] = useState(false)
+  const [submitDone, setSubmitDone] = useState(false)
 
   const changeTitleHandler = event => {
     setTitle(event.target.value)
@@ -32,7 +32,7 @@ const EditItem = ({ balance }) => {
   }
 
   const editItemHandler = () => {
-    const editObj = {
+    const editedItem = {
       id: itemId,
       side: item.side,
       type: item.type,
@@ -40,15 +40,11 @@ const EditItem = ({ balance }) => {
       description: description,
       amount: Number.parseFloat(amount).toString(),
     }
-
-    const newBalance = JSON.parse(localStorage.getItem('balance'))
-    const itemIndex = balance.items.map(el => el.id).indexOf(itemId)
-    newBalance.items[itemIndex] = editObj
-    localStorage.setItem('balance', JSON.stringify(newBalance))
-    setEditDone(true)
+    onEditSubmit(editedItem)
+    setSubmitDone(true)
   }
 
-  if (editDone) {
+  if (submitDone) {
     return <Redirect to="/" />
   }
 
@@ -102,6 +98,7 @@ const EditItem = ({ balance }) => {
 
 EditItem.propTypes = {
   balance: PropTypes.object.isRequired,
+  onEditSubmit: PropTypes.func.isRequired,
 }
 
 const Main = styled.main`

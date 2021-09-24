@@ -14,6 +14,21 @@ function App() {
     JSON.parse(localStorage.getItem('balance'))
   )
 
+  const addItemHandler = addItem => {
+    const newBalance = { ...balanceLocalStorage }
+    newBalance.items.push(addItem)
+    localStorage.setItem('balance', JSON.stringify(newBalance))
+    setBalanceLocalStorage(newBalance)
+  }
+
+  const editItemHandler = editedItem => {
+    const newBalance = { ...balanceLocalStorage }
+    const itemIndex = newBalance.items.map(el => el.id).indexOf(editedItem.id)
+    newBalance.items[itemIndex] = editedItem
+    localStorage.setItem('balance', JSON.stringify(newBalance))
+    setBalanceLocalStorage(newBalance)
+  }
+
   const deleteItemHandler = deleteItemId => {
     const newItems = balanceLocalStorage.items.filter(
       element => element.id !== deleteItemId
@@ -33,10 +48,13 @@ function App() {
       </header>
       <Switch>
         <Route exact path="/add/:side/:type">
-          <AddItem />
+          <AddItem onAddSubmit={addItemHandler} />
         </Route>
         <Route exact path="/edit/:itemId">
-          <EditItem balance={balanceLocalStorage} />
+          <EditItem
+            balance={balanceLocalStorage}
+            onEditSubmit={editItemHandler}
+          />
         </Route>
         <Route exact path="/">
           <BalanceSheet
