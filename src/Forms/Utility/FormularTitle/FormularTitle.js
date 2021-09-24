@@ -1,7 +1,12 @@
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 
 const FormularTitle = ({ title }) => {
   return <Title>{title}</Title>
+}
+
+FormularTitle.propTypes = {
+  title: PropTypes.string.isRequired,
 }
 
 const Title = styled.h2`

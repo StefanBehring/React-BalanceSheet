@@ -4,7 +4,7 @@ import SubmitButton from './SubmitButton'
 
 const testTitle = 'Add Item'
 
-test('loads items eventually', () => {
+test('loads item and shows text', () => {
   render(<SubmitButton title={testTitle} />)
 
   const items = screen.getByText(testTitle)

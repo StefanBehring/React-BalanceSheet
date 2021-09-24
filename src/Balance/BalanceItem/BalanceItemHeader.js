@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 
 const BalanceItemHeader = ({ itemTitle, showMenu, onMenuButtonClick }) => {
   return (
@@ -9,6 +10,12 @@ const BalanceItemHeader = ({ itemTitle, showMenu, onMenuButtonClick }) => {
       </ShowItemMenuButton>
     </Wrapper>
   )
+}
+
+BalanceItemHeader.propTypes = {
+  itemTitle: PropTypes.string.isRequired,
+  showMenu: PropTypes.bool,
+  onMenuButtonClick: PropTypes.func.isRequired,
 }
 
 const Wrapper = styled.div`

@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router'
+import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import BalanceItemHeader from './BalanceItemHeader'
 import BalanceItemMenu from './BalanceItemMenu'
 
-const BalanceItem = ({ onDeleteItem, itemId }) => {
+const BalanceItem = ({ balance, itemId, onDeleteItem }) => {
   // Get item by id from localStorage
-  const item = JSON.parse(localStorage.getItem('balance')).items.find(
-    itemFind => itemFind.id === itemId
-  )
+  const item = balance.items.find(itemFind => itemFind.id === itemId)
 
   const [showMenu, setShowMenu] = useState(false)
 
@@ -44,6 +43,11 @@ const BalanceItem = ({ onDeleteItem, itemId }) => {
       )}
     </Wrapper>
   )
+}
+
+BalanceItem.propTypes = {
+  onDeleteItem: PropTypes.func.isRequired,
+  itemId: PropTypes.string.isRequired,
 }
 
 const Wrapper = styled.div`

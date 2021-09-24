@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 
 const BalanceItemMenu = ({ onEditItemClick, onDeleteItemClick }) => {
   return (
@@ -7,6 +8,11 @@ const BalanceItemMenu = ({ onEditItemClick, onDeleteItemClick }) => {
       <DeleteButton onClick={onDeleteItemClick}>Delete</DeleteButton>
     </Wrapper>
   )
+}
+
+BalanceItemMenu.propTypes = {
+  onEditItemClick: PropTypes.func.isRequired,
+  onDeleteItemClick: PropTypes.func.isRequired,
 }
 
 const Wrapper = styled.div`

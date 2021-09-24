@@ -1,17 +1,28 @@
 import styled from 'styled-components/macro'
 import BalanceSide from '../BalanceSide/BalanceSide'
+import PropTypes from 'prop-types'
 
-const BalanceSheet = ({ onDeleteItem }) => {
+const BalanceSheet = ({ balance, onDeleteItem }) => {
   // Get sides from localStorage
-  const sides = JSON.parse(localStorage.getItem('balance')).sides
+  const sides = balance.sides
 
   return (
     <Main>
       {sides.map(side => (
-        <BalanceSide key={side} side={side} onDeleteItem={onDeleteItem} />
+        <BalanceSide
+          key={side}
+          balance={balance}
+          side={side}
+          onDeleteItem={onDeleteItem}
+        />
       ))}
     </Main>
   )
+}
+
+BalanceSheet.propTypes = {
+  balance: PropTypes.object.isRequired,
+  onDeleteItem: PropTypes.func.isRequired,
 }
 
 const Main = styled.main`

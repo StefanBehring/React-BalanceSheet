@@ -1,9 +1,10 @@
 import styled from 'styled-components/macro'
 import BalancePosition from '../BalancePosition/BalancePosition'
+import PropTypes from 'prop-types'
 
-const BalanceSide = ({ onDeleteItem, side }) => {
+const BalanceSide = ({ balance, side, onDeleteItem }) => {
   // Get types from localStorage
-  const types = JSON.parse(localStorage.getItem('balance')).types
+  const types = balance.types
 
   return (
     <Wrapper>
@@ -11,6 +12,7 @@ const BalanceSide = ({ onDeleteItem, side }) => {
       {types.map(type => (
         <BalancePosition
           key={`${side}-${type}`}
+          balance={balance}
           side={side}
           type={type}
           onDeleteItem={onDeleteItem}
@@ -18,6 +20,12 @@ const BalanceSide = ({ onDeleteItem, side }) => {
       ))}
     </Wrapper>
   )
+}
+
+BalanceSide.propTypes = {
+  balance: PropTypes.object.isRequired,
+  side: PropTypes.string.isRequired,
+  onDeleteItem: PropTypes.func.isRequired,
 }
 
 const Wrapper = styled.section`
