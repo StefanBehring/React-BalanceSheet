@@ -4,7 +4,7 @@ import FormularTitle from './FormularTitle'
 
 const testTitle = 'Activa'
 
-test('loads items eventually', () => {
+test('loads item and shows text', () => {
   render(<FormularTitle title={testTitle} />)
 
   const items = screen.getByText(testTitle)

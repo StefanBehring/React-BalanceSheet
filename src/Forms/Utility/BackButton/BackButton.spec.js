@@ -3,7 +3,7 @@ import { MemoryRouter as Router } from 'react-router'
 
 import BackButton from './BackButton'
 
-test('loads items eventually', () => {
+test('loads item', () => {
   render(
     <Router>
       <BackButton />
