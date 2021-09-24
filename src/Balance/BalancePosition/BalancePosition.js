@@ -2,6 +2,7 @@ import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import BalanceItem from '../BalanceItem/BalanceItem'
 import BalancePositionHeader from './BalancePositionHeader'
+import PropTypes from 'prop-types'
 
 const BalancePosition = ({ onDeleteItem, side, type }) => {
   // Get items from localStorage
@@ -33,6 +34,12 @@ const BalancePosition = ({ onDeleteItem, side, type }) => {
       })}
     </Wrapper>
   )
+}
+
+BalancePosition.propTypes = {
+  onDeleteItem: PropTypes.func.isRequired,
+  side: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 }
 
 const Wrapper = styled.div`
