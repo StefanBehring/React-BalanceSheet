@@ -1,18 +1,19 @@
 import { useState } from 'react'
 import { Redirect, useParams } from 'react-router'
 import { v4 as uuidv4 } from 'uuid'
+import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import BackButton from '../Utility/BackButton/BackButton'
 import FormularTitle from '../Utility/FormularTitle/FormularTitle'
 import SubmitButton from '../Utility/SubmitButton/SubmitButton'
 
-const AddItem = () => {
+const AddItem = ({ onAddSubmit }) => {
   const { side, type } = useParams()
 
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [amount, setAmount] = useState(0)
-  const [addDone, setAddDone] = useState(false)
+  const [submitDone, setSubmitDone] = useState(false)
 
   const changeTitleHandler = event => {
     setTitle(event.target.value)
@@ -27,7 +28,7 @@ const AddItem = () => {
   }
 
   const addItemHandler = () => {
-    const addObj = {
+    const addItem = {
       id: uuidv4(),
       side: side,
       type: type,
@@ -35,13 +36,11 @@ const AddItem = () => {
       description: description,
       amount: Number.parseFloat(amount).toString(),
     }
-    const balance = JSON.parse(localStorage.getItem('balance'))
-    balance.items.push(addObj)
-    localStorage.setItem('balance', JSON.stringify(balance))
-    setAddDone(true)
+    onAddSubmit(addItem)
+    setSubmitDone(true)
   }
 
-  if (addDone) {
+  if (submitDone) {
     return <Redirect to="/" />
   }
 
@@ -91,6 +90,10 @@ const AddItem = () => {
       </ItemFormular>
     </Main>
   )
+}
+
+AddItem.propTypes = {
+  onAddSubmit: PropTypes.func.isRequired,
 }
 
 const Main = styled.main`

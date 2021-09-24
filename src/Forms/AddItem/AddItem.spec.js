@@ -10,6 +10,7 @@ const type = 'long-term'
 const testTitle = `Add Item - ${side} ${type}`
 const labelTitles = ['Title', 'Description', 'Amount']
 const addItemButtonTitle = 'Add Item'
+const addSubmitHandler = jest.fn()
 
 test('loads item and shows text', () => {
   const history = createMemoryHistory()
@@ -19,7 +20,7 @@ test('loads item and shows text', () => {
   render(
     <Router history={history}>
       <Route exact path="/add/:side/:type">
-        <AddItem />
+        <AddItem onAddSubmit={addSubmitHandler} />
       </Route>
     </Router>
   )
