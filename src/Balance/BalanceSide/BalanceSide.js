@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro'
 import BalancePosition from '../BalancePosition/BalancePosition'
+import PropTypes from 'prop-types'
 
 const BalanceSide = ({ onDeleteItem, side }) => {
   // Get types from localStorage
@@ -18,6 +19,11 @@ const BalanceSide = ({ onDeleteItem, side }) => {
       ))}
     </Wrapper>
   )
+}
+
+BalanceSide.propTypes = {
+  onDeleteItem: PropTypes.func.isRequired,
+  side: PropTypes.string.isRequired,
 }
 
 const Wrapper = styled.section`
