@@ -49,7 +49,7 @@ const BalanceItem = ({ onDeleteItem, itemId }) => {
 
 BalanceItem.propTypes = {
   onDeleteItem: PropTypes.func.isRequired,
-  itemId: PropTypes.string.isRequired,
+  itemId: PropTypes.number.isRequired,
 }
 
 const Wrapper = styled.div`
