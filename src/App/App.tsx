@@ -6,6 +6,7 @@ import LocalStorageInit from './LocalStorageInit'
 import AddItem from '../Forms/AddItem/AddItem'
 import EditItem from '../Forms/EditItem/EditItem'
 import { FDeleteItem, IBalance, IItem } from './balanceTypes'
+import PageNotFound from '../Error/PageNotFound/PageNotFound'
 
 function App() {
   // LocalStorage init
@@ -62,6 +63,9 @@ function App() {
             balance={balanceLocalStorage}
             onDeleteItem={deleteItemHandler}
           />
+        </Route>
+        <Route>
+          <PageNotFound />
         </Route>
       </Switch>
       <AppFooter>
