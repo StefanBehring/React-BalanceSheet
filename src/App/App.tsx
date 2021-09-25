@@ -1,11 +1,11 @@
 import styled from 'styled-components/macro'
 import { useState } from 'react'
 import { Route, Switch } from 'react-router'
+import { FDeleteItem, IBalance, IItem } from './balanceTypes'
 import BalanceSheet from '../Balance/BalanceSheet/BalanceSheet'
 import LocalStorageInit from './LocalStorageInit'
 import AddItem from '../Forms/AddItem/AddItem'
 import EditItem from '../Forms/EditItem/EditItem'
-import { FDeleteItem, IBalance, IItem } from './balanceTypes'
 import PageNotFound from '../Error/PageNotFound/PageNotFound'
 import Header from '../General/Header/Header'
 
