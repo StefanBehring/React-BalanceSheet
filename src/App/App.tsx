@@ -8,6 +8,7 @@ import AddItem from '../Forms/AddItem/AddItem'
 import EditItem from '../Forms/EditItem/EditItem'
 import PageNotFound from '../Error/PageNotFound/PageNotFound'
 import Header from '../General/Header/Header'
+import Footer from '../General/Footer/Footer'
 
 function App() {
   // LocalStorage init
@@ -67,16 +68,7 @@ function App() {
           <PageNotFound />
         </Route>
       </Switch>
-      <AppFooter>
-        <a
-          href="https://github.com/StefanBehring/React-Privatbilanz"
-          target="_blank"
-          rel="noreferrer"
-        >
-          A github project
-        </a>
-        <p>by: Stefan Behring</p>
-      </AppFooter>
+      <Footer />
     </AppDiv>
   )
 }
@@ -89,10 +81,6 @@ const AppDiv = styled.div`
   @media screen and (min-width: 760px) {
     width: 750px;
   }
-`
-
-const AppFooter = styled.footer`
-  text-align: center;
 `
 
 export default App

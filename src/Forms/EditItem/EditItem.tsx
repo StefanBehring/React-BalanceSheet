@@ -71,6 +71,7 @@ const EditItem = ({ balance, onEditSubmit }: IEditItemProps) => {
             type="text"
             id="title"
             name="title"
+            required
             onChange={changeTitleHandler}
             value={title}
           />
@@ -80,6 +81,7 @@ const EditItem = ({ balance, onEditSubmit }: IEditItemProps) => {
           <ItemFormularTextarea
             id="description"
             name="description"
+            required
             onChange={changeDescriptionHandler}
             rows={4}
             cols={50}
@@ -92,6 +94,7 @@ const EditItem = ({ balance, onEditSubmit }: IEditItemProps) => {
             type="number"
             id="amount"
             name="amount"
+            required
             onChange={changeAmountHandler}
             step="0.01"
             min="0.01"

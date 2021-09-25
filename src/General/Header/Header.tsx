@@ -1,9 +1,11 @@
 import styled from 'styled-components/macro'
+import Navigation from '../Navigation/Navigation'
 
 const Header = () => {
   return (
     <header>
       <AppTitle>Balance Sheet</AppTitle>
+      <Navigation />
     </header>
   )
 }

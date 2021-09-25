@@ -1,9 +1,19 @@
 import styled from 'styled-components/macro'
 import { Link } from 'react-router-dom'
 
-const BackButton = () => {
-  return <StyledLink to="/">Back</StyledLink>
+const Navigation = () => {
+  return (
+    <Nav>
+      <StyledLink to="/">Overview</StyledLink>
+      <StyledLink to="/details">Details</StyledLink>
+    </Nav>
+  )
 }
+
+const Nav = styled.nav`
+  display: flex;
+  justify-content: space-around;
+`
 
 const StyledLink = styled(Link)`
   background-color: #1266f1;
@@ -23,4 +33,4 @@ const StyledLink = styled(Link)`
   }
 `
 
-export default BackButton
+export default Navigation
