@@ -1,6 +1,8 @@
+import { IBalance } from './balanceTypes'
+
 const LocalStorageInit = () => {
   if (localStorage.getItem('balance') === null) {
-    const newBalance = {
+    const newBalance: IBalance = {
       sides: ['activa', 'passiva'],
       types: ['long-term', 'mid-term', 'short-term'],
       items: [

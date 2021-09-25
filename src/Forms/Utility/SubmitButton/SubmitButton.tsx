@@ -1,12 +1,11 @@
 import styled from 'styled-components/macro'
-import PropTypes from 'prop-types'
 
-const SubmitButton = ({ title }) => {
-  return <Button>{title}</Button>
+interface ISubmitButtonProps {
+  title: string
 }
 
-SubmitButton.propTypes = {
-  title: PropTypes.string.isRequired,
+const SubmitButton = ({ title }: ISubmitButtonProps) => {
+  return <Button>{title}</Button>
 }
 
 const Button = styled.button`

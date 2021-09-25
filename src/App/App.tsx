@@ -5,23 +5,24 @@ import BalanceSheet from '../Balance/BalanceSheet/BalanceSheet'
 import LocalStorageInit from './LocalStorageInit'
 import AddItem from '../Forms/AddItem/AddItem'
 import EditItem from '../Forms/EditItem/EditItem'
+import { FDeleteItem, IBalance, IItem } from './balanceTypes'
 
 function App() {
   // LocalStorage init
   LocalStorageInit()
 
   const [balanceLocalStorage, setBalanceLocalStorage] = useState(
-    JSON.parse(localStorage.getItem('balance'))
+    JSON.parse(localStorage.getItem('balance')!) as IBalance
   )
 
-  const addItemHandler = addItem => {
+  const addItemHandler = (addItem: IItem) => {
     const newBalance = { ...balanceLocalStorage }
     newBalance.items.push(addItem)
     localStorage.setItem('balance', JSON.stringify(newBalance))
     setBalanceLocalStorage(newBalance)
   }
 
-  const editItemHandler = editedItem => {
+  const editItemHandler = (editedItem: IItem) => {
     const newBalance = { ...balanceLocalStorage }
     const itemIndex = newBalance.items.map(el => el.id).indexOf(editedItem.id)
     newBalance.items[itemIndex] = editedItem
@@ -29,7 +30,7 @@ function App() {
     setBalanceLocalStorage(newBalance)
   }
 
-  const deleteItemHandler = deleteItemId => {
+  const deleteItemHandler: FDeleteItem = (deleteItemId: string) => {
     const newItems = balanceLocalStorage.items.filter(
       element => element.id !== deleteItemId
     )

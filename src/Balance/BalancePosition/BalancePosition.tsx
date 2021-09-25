@@ -2,9 +2,21 @@ import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import BalanceItem from '../BalanceItem/BalanceItem'
 import BalancePositionHeader from './BalancePositionHeader'
-import PropTypes from 'prop-types'
+import { FDeleteItem, IBalance } from '../../App/balanceTypes'
 
-const BalancePosition = ({ balance, side, type, onDeleteItem }) => {
+interface IBalancePositionProps {
+  balance: IBalance
+  side: string
+  type: string
+  onDeleteItem: FDeleteItem
+}
+
+const BalancePosition = ({
+  balance,
+  side,
+  type,
+  onDeleteItem,
+}: IBalancePositionProps) => {
   // Get items from localStorage
   const items = balance.items.filter(
     item => item.side === side && item.type === type
@@ -35,13 +47,6 @@ const BalancePosition = ({ balance, side, type, onDeleteItem }) => {
       })}
     </Wrapper>
   )
-}
-
-BalancePosition.propTypes = {
-  balance: PropTypes.object.isRequired,
-  side: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  onDeleteItem: PropTypes.func.isRequired,
 }
 
 const Wrapper = styled.div`

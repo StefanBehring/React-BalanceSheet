@@ -5,30 +5,41 @@ import PropTypes from 'prop-types'
 import BackButton from '../Utility/BackButton/BackButton'
 import FormularTitle from '../Utility/FormularTitle/FormularTitle'
 import SubmitButton from '../Utility/SubmitButton/SubmitButton'
+import { IBalance, IItem } from '../../App/balanceTypes'
 
-const EditItem = ({ balance, onEditSubmit }) => {
+interface IEditItemProps {
+  balance: IBalance
+  onEditSubmit: (item: IItem) => void
+}
+interface IEditItemParams {
+  itemId: string
+}
+
+const EditItem = ({ balance, onEditSubmit }: IEditItemProps) => {
   // Get item by id from localStorage
-  const { itemId } = useParams()
+  const { itemId } = useParams<IEditItemParams>()
 
   const item = balance.items.find(
     itemFind => itemFind.id.toString() === itemId.toString()
-  )
+  )!
 
   const [title, setTitle] = useState(item.title)
   const [description, setDescription] = useState(item.description)
   const [amount, setAmount] = useState(Number.parseFloat(item.amount))
   const [submitDone, setSubmitDone] = useState(false)
 
-  const changeTitleHandler = event => {
+  const changeTitleHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value)
   }
 
-  const changeDescriptionHandler = event => {
+  const changeDescriptionHandler = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setDescription(event.target.value)
   }
 
-  const changeAmountHandler = event => {
-    setAmount(event.target.value)
+  const changeAmountHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAmount(Number.parseFloat(event.target.value))
   }
 
   const editItemHandler = () => {
@@ -38,7 +49,7 @@ const EditItem = ({ balance, onEditSubmit }) => {
       type: item.type,
       title: title,
       description: description,
-      amount: Number.parseFloat(amount).toString(),
+      amount: amount.toString(),
     }
     onEditSubmit(editedItem)
     setSubmitDone(true)
@@ -70,8 +81,8 @@ const EditItem = ({ balance, onEditSubmit }) => {
             id="description"
             name="description"
             onChange={changeDescriptionHandler}
-            rows="4"
-            cols="50"
+            rows={4}
+            cols={50}
             value={description}
           />
           <label className="item-formular__label" htmlFor="amount">

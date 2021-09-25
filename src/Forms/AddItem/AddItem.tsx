@@ -1,30 +1,41 @@
 import { useState } from 'react'
 import { Redirect, useParams } from 'react-router'
 import { v4 as uuidv4 } from 'uuid'
-import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import BackButton from '../Utility/BackButton/BackButton'
 import FormularTitle from '../Utility/FormularTitle/FormularTitle'
 import SubmitButton from '../Utility/SubmitButton/SubmitButton'
+import { IItem } from '../../App/balanceTypes'
 
-const AddItem = ({ onAddSubmit }) => {
-  const { side, type } = useParams()
+interface IAddItemProps {
+  onAddSubmit: (addItem: IItem) => void
+}
+
+interface IAddItemParams {
+  side: string
+  type: string
+}
+
+const AddItem = ({ onAddSubmit }: IAddItemProps) => {
+  const { side, type } = useParams<IAddItemParams>()
 
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [amount, setAmount] = useState(0)
   const [submitDone, setSubmitDone] = useState(false)
 
-  const changeTitleHandler = event => {
+  const changeTitleHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value)
   }
 
-  const changeDescriptionHandler = event => {
+  const changeDescriptionHandler = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setDescription(event.target.value)
   }
 
-  const changeAmountHandler = event => {
-    setAmount(event.target.value)
+  const changeAmountHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAmount(Number.parseFloat(event.target.value))
   }
 
   const addItemHandler = () => {
@@ -34,7 +45,7 @@ const AddItem = ({ onAddSubmit }) => {
       type: type,
       title: title,
       description: description,
-      amount: Number.parseFloat(amount).toString(),
+      amount: amount.toString(),
     }
     onAddSubmit(addItem)
     setSubmitDone(true)
@@ -66,8 +77,8 @@ const AddItem = ({ onAddSubmit }) => {
             id="description"
             name="description"
             onChange={changeDescriptionHandler}
-            rows="4"
-            cols="50"
+            rows={4}
+            cols={50}
             value={description}
           />
           <label className="item-formular__label" htmlFor="amount">
@@ -90,10 +101,6 @@ const AddItem = ({ onAddSubmit }) => {
       </ItemFormular>
     </Main>
   )
-}
-
-AddItem.propTypes = {
-  onAddSubmit: PropTypes.func.isRequired,
 }
 
 const Main = styled.main`

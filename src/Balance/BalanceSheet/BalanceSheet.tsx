@@ -1,8 +1,13 @@
 import styled from 'styled-components/macro'
 import BalanceSide from '../BalanceSide/BalanceSide'
-import PropTypes from 'prop-types'
+import { FDeleteItem, IBalance } from '../../App/balanceTypes'
 
-const BalanceSheet = ({ balance, onDeleteItem }) => {
+interface IBalanceSheetProps {
+  balance: IBalance
+  onDeleteItem: FDeleteItem
+}
+
+const BalanceSheet = ({ balance, onDeleteItem }: IBalanceSheetProps) => {
   // Get sides from localStorage
   const sides = balance.sides
 
@@ -18,11 +23,6 @@ const BalanceSheet = ({ balance, onDeleteItem }) => {
       ))}
     </Main>
   )
-}
-
-BalanceSheet.propTypes = {
-  balance: PropTypes.object.isRequired,
-  onDeleteItem: PropTypes.func.isRequired,
 }
 
 const Main = styled.main`

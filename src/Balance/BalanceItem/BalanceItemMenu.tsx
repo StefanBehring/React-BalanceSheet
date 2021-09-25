@@ -1,19 +1,21 @@
 import styled from 'styled-components/macro'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-const BalanceItemMenu = ({ editPath, onDeleteItemClick }) => {
+interface IBalanceItemMenuProps {
+  editPath: string
+  onDeleteItemClick: () => void
+}
+
+const BalanceItemMenu = ({
+  editPath,
+  onDeleteItemClick,
+}: IBalanceItemMenuProps) => {
   return (
     <Wrapper>
       <EditLink to={editPath}>Edit</EditLink>
       <DeleteButton onClick={onDeleteItemClick}>Delete</DeleteButton>
     </Wrapper>
   )
-}
-
-BalanceItemMenu.propTypes = {
-  editPath: PropTypes.string.isRequired,
-  onDeleteItemClick: PropTypes.func.isRequired,
 }
 
 const Wrapper = styled.div`
