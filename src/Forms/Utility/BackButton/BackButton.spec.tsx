@@ -10,7 +10,6 @@ test('loads item', () => {
     </Router>
   )
 
-  // Wait for page to update with query text
   const items = screen.getByText('Back')
   expect(items).toBeInTheDocument()
 })
