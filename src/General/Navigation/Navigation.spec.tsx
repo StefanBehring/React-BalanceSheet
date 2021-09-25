@@ -17,3 +17,15 @@ test('loads item', () => {
     expect(itemText).toBeInTheDocument()
   }
 })
+
+test('has links equal to pageTexts count', () => {
+  render(
+    <Router>
+      <Navigation />
+    </Router>
+  )
+
+  const linkElements = screen.getAllByRole('link')
+  expect(linkElements.length).toBeGreaterThanOrEqual(pageTexts.length)
+  expect(linkElements.length).toBeLessThanOrEqual(pageTexts.length)
+})
