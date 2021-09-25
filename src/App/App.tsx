@@ -7,6 +7,7 @@ import AddItem from '../Forms/AddItem/AddItem'
 import EditItem from '../Forms/EditItem/EditItem'
 import { FDeleteItem, IBalance, IItem } from './balanceTypes'
 import PageNotFound from '../Error/PageNotFound/PageNotFound'
+import Header from '../General/Header/Header'
 
 function App() {
   // LocalStorage init
@@ -45,9 +46,7 @@ function App() {
 
   return (
     <AppDiv>
-      <header className="app__header">
-        <AppTitle>Balance Sheet</AppTitle>
-      </header>
+      <Header />
       <Switch>
         <Route exact path="/add/:side/:type">
           <AddItem onAddSubmit={addItemHandler} />
@@ -90,11 +89,6 @@ const AppDiv = styled.div`
   @media screen and (min-width: 760px) {
     width: 750px;
   }
-`
-
-const AppTitle = styled.h1`
-  color: var(--color-secondary);
-  text-align: center;
 `
 
 const AppFooter = styled.footer`
