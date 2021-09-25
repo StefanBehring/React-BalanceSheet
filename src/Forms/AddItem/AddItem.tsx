@@ -67,6 +67,7 @@ const AddItem = ({ onAddSubmit }: IAddItemProps) => {
             type="text"
             id="title"
             name="title"
+            required
             onChange={changeTitleHandler}
             value={title}
           />
@@ -76,6 +77,7 @@ const AddItem = ({ onAddSubmit }: IAddItemProps) => {
           <ItemFormularTextarea
             id="description"
             name="description"
+            required
             onChange={changeDescriptionHandler}
             rows={4}
             cols={50}
@@ -88,6 +90,7 @@ const AddItem = ({ onAddSubmit }: IAddItemProps) => {
             type="number"
             id="amount"
             name="amount"
+            required
             onChange={changeAmountHandler}
             step="0.01"
             min="0.01"
