@@ -15,7 +15,7 @@ const StyledLink = styled(Link)`
   text-align: center;
   text-decoration: none;
   transition: all 0.3s ease-in;
-  width: 50px;
+  width: fit-content;
 
   &:hover {
     background-color: #0d47a1;
