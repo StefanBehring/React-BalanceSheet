@@ -22,4 +22,5 @@ const StyledLink = styled(Link)`
     color: white;
   }
 `
+
 export default BackButton
