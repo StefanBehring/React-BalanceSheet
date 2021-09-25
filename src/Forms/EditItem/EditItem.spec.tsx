@@ -4,8 +4,11 @@ import { Router } from 'react-router-dom'
 import { Route } from 'react-router'
 
 import EditItem from './EditItem'
+import { IBalance } from '../../App/balanceTypes'
 
-const balanceLocalStorage = {
+const balanceLocalStorage: IBalance = {
+  sides: ['activa', 'passiva'],
+  types: ['long-term', 'mid-term', 'short-term'],
   items: [
     {
       id: '0',

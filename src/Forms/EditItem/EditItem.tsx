@@ -1,42 +1,57 @@
 import { useState } from 'react'
 import { Redirect, useParams } from 'react-router'
-import { v4 as uuidv4 } from 'uuid'
-import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 import BackButton from '../Utility/BackButton/BackButton'
 import FormularTitle from '../Utility/FormularTitle/FormularTitle'
 import SubmitButton from '../Utility/SubmitButton/SubmitButton'
+import { IBalance, IItem } from '../../App/balanceTypes'
 
-const AddItem = ({ onAddSubmit }) => {
-  const { side, type } = useParams()
+interface IEditItemProps {
+  balance: IBalance
+  onEditSubmit: (item: IItem) => void
+}
+interface IEditItemParams {
+  itemId: string
+}
 
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [amount, setAmount] = useState(0)
+const EditItem = ({ balance, onEditSubmit }: IEditItemProps) => {
+  // Get item by id from localStorage
+  const { itemId } = useParams<IEditItemParams>()
+
+  const item = balance.items.find(
+    itemFind => itemFind.id.toString() === itemId.toString()
+  )!
+
+  const [title, setTitle] = useState(item.title)
+  const [description, setDescription] = useState(item.description)
+  const [amount, setAmount] = useState(Number.parseFloat(item.amount))
   const [submitDone, setSubmitDone] = useState(false)
 
-  const changeTitleHandler = event => {
+  const changeTitleHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value)
   }
 
-  const changeDescriptionHandler = event => {
+  const changeDescriptionHandler = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setDescription(event.target.value)
   }
 
-  const changeAmountHandler = event => {
-    setAmount(event.target.value)
+  const changeAmountHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAmount(Number.parseFloat(event.target.value))
   }
 
-  const addItemHandler = () => {
-    const addItem = {
-      id: uuidv4(),
-      side: side,
-      type: type,
+  const editItemHandler = () => {
+    const editedItem = {
+      id: itemId,
+      side: item.side,
+      type: item.type,
       title: title,
       description: description,
-      amount: Number.parseFloat(amount).toString(),
+      amount: amount.toString(),
     }
-    onAddSubmit(addItem)
+    onEditSubmit(editedItem)
     setSubmitDone(true)
   }
 
@@ -47,8 +62,8 @@ const AddItem = ({ onAddSubmit }) => {
   return (
     <Main>
       <ItemFormular>
-        <FormularTitle title={`Add Item - ${side} ${type}`} />
-        <ItemFormularForm onSubmit={addItemHandler}>
+        <FormularTitle title="Edit Item" />
+        <ItemFormularForm onSubmit={editItemHandler}>
           <label className="item-formular__label" htmlFor="title">
             Title
           </label>
@@ -66,8 +81,8 @@ const AddItem = ({ onAddSubmit }) => {
             id="description"
             name="description"
             onChange={changeDescriptionHandler}
-            rows="4"
-            cols="50"
+            rows={4}
+            cols={50}
             value={description}
           />
           <label className="item-formular__label" htmlFor="amount">
@@ -83,7 +98,7 @@ const AddItem = ({ onAddSubmit }) => {
             value={amount}
           />
           <ButtonMenu>
-            <SubmitButton title="Add Item" />
+            <SubmitButton title="Edit Item" />
             <BackButton />
           </ButtonMenu>
         </ItemFormularForm>
@@ -92,8 +107,9 @@ const AddItem = ({ onAddSubmit }) => {
   )
 }
 
-AddItem.propTypes = {
-  onAddSubmit: PropTypes.func.isRequired,
+EditItem.propTypes = {
+  balance: PropTypes.object.isRequired,
+  onEditSubmit: PropTypes.func.isRequired,
 }
 
 const Main = styled.main`
@@ -158,4 +174,4 @@ const ButtonMenu = styled.div`
   justify-content: space-evenly;
 `
 
-export default AddItem
+export default EditItem

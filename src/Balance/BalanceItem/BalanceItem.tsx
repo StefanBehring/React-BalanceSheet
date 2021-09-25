@@ -1,12 +1,18 @@
 import { useState } from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import BalanceItemHeader from './BalanceItemHeader'
 import BalanceItemMenu from './BalanceItemMenu'
+import { FDeleteItem, IBalance } from '../../App/balanceTypes'
 
-const BalanceItem = ({ balance, itemId, onDeleteItem }) => {
+interface BalanceItemProps {
+  balance: IBalance
+  itemId: string
+  onDeleteItem: FDeleteItem
+}
+
+const BalanceItem = ({ balance, itemId, onDeleteItem }: BalanceItemProps) => {
   // Get item by id from localStorage
-  const item = balance.items.find(itemFind => itemFind.id === itemId)
+  const item = balance.items.find(itemFind => itemFind.id === itemId)!
 
   const [showMenu, setShowMenu] = useState(false)
 
@@ -35,11 +41,6 @@ const BalanceItem = ({ balance, itemId, onDeleteItem }) => {
       )}
     </Wrapper>
   )
-}
-
-BalanceItem.propTypes = {
-  onDeleteItem: PropTypes.func.isRequired,
-  itemId: PropTypes.string.isRequired,
 }
 
 const Wrapper = styled.div`

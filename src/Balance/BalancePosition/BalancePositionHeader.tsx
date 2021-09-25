@@ -1,18 +1,20 @@
 import styled from 'styled-components/macro'
-import PropTypes from 'prop-types'
 
-const BalancePositionHeader = ({ type, onAddItemButtonClick }) => {
+interface IBalancePositionHeaderProps {
+  type: string
+  onAddItemButtonClick: () => void
+}
+
+const BalancePositionHeader = ({
+  type,
+  onAddItemButtonClick,
+}: IBalancePositionHeaderProps) => {
   return (
     <Wrapper>
       <Title>{type}</Title>
       <AddItemButton onClick={onAddItemButtonClick}>Add</AddItemButton>
     </Wrapper>
   )
-}
-
-BalancePositionHeader.propTypes = {
-  type: PropTypes.string.isRequired,
-  onAddItemButtonClick: PropTypes.func.isRequired,
 }
 
 const Wrapper = styled.div`
