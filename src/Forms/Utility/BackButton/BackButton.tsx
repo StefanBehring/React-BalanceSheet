@@ -12,8 +12,10 @@ const StyledLink = styled(Link)`
   color: white;
   font-family: var(--font-family);
   padding: 0.3rem 0.5rem;
+  text-align: center;
   text-decoration: none;
   transition: all 0.3s ease-in;
+  width: 50px;
 
   &:hover {
     background-color: #0d47a1;
