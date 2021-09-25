@@ -11,6 +11,9 @@ interface BalanceItemProps {
 }
 
 const BalanceItem = ({ balance, itemId, onDeleteItem }: BalanceItemProps) => {
+  // Get item by id from localStorage
+  const item = balance.items.find(itemFind => itemFind.id === itemId)!
+
   const [showMenu, setShowMenu] = useState(false)
 
   const showMenuButtonClickHandler = () => {
@@ -19,12 +22,6 @@ const BalanceItem = ({ balance, itemId, onDeleteItem }: BalanceItemProps) => {
 
   const deleteItemClickHandler = () => {
     onDeleteItem(itemId)
-  }
-
-  // Get item by id from localStorage TODO: refactor
-  const item = balance.items.find(itemFind => itemFind.id === itemId)
-  if (!item) {
-    return null
   }
 
   return (
