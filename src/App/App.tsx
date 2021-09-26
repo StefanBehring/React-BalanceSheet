@@ -9,6 +9,7 @@ import EditItem from '../Forms/EditItem/EditItem'
 import PageNotFound from '../Error/PageNotFound/PageNotFound'
 import Header from '../General/Header/Header'
 import Footer from '../General/Footer/Footer'
+import OverviewPage from '../Overview/OverviewPage/OverviewPage'
 
 function App() {
   // LocalStorage init
@@ -58,11 +59,14 @@ function App() {
             onEditSubmit={editItemHandler}
           />
         </Route>
-        <Route exact path="/">
+        <Route exact path="/details">
           <BalanceSheet
             balance={balanceLocalStorage}
             onDeleteItem={deleteItemHandler}
           />
+        </Route>
+        <Route exact path="/">
+          <OverviewPage balance={balanceLocalStorage} />
         </Route>
         <Route>
           <PageNotFound />
