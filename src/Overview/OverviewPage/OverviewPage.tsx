@@ -1,12 +1,30 @@
 import styled from 'styled-components/macro'
 import { IBalance } from '../../App/balanceTypes'
+import OverviewTotals from '../OverviewTotals/OverviewTotals'
 
 interface IOverviewPageProps {
   balance: IBalance
 }
 
+type sideTotal = { side: string; amount: number }
+
+const calcTotal = (balanceObj: IBalance, side: string) => {
+  const filteredItems = balanceObj.items.filter(item => item.side === side)
+  let total = 0
+  filteredItems.forEach(item => (total += Number.parseFloat(item.amount)))
+  return total
+}
+
 const OverviewPage = ({ balance }: IOverviewPageProps) => {
-  return <Main></Main>
+  const totals: sideTotal[] = []
+  balance.sides.forEach(side =>
+    totals.push({ side: side, amount: calcTotal(balance, side) })
+  )
+  return (
+    <Main>
+      <OverviewTotals totals={totals} />
+    </Main>
+  )
 }
 
 const Main = styled.main`
